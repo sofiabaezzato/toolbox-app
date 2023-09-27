@@ -7,10 +7,10 @@ const Home = () => {
         <h1 className="head_text text-center">
             Discover & Share
             <br className="max-md:hidden" />
-            <span className="orange_gradient text-center"> Powerful Tools</span>
+            <span className="red_gradient text-center"> Powerful Tools</span>
         </h1>
         <p className="desc text-center">
-            Toolbox is an open-source database of the most useful tools on the internet
+            ToolBox is an open-source database of the most useful tools on the internet
         </p>
 
         <Feed />
