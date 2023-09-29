@@ -12,44 +12,55 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
   return (
     <div className="tool_card">
-      <div className="flex justify-between items-start gap-5">
+      <div className=" flex flex-col items-start">
+        <div className="flex justify-between items-center w-full" >
+          <h3 className="font-satoshi font-semibold text-gray-900">
+            {post.toolName}
+          </h3>
+
+          <Link href={post.url}
+          className="font-inter text-xs blue_gradient cursor-pointer font-semibold flex gap-2 items-center"
+          >
+            <Image
+              src="/icons/link.svg"
+              width={18}
+              height={18}
+              alt="link icon"
+            />
+            Website
+          </Link>
+            
+        </div>
+        <p className="font-inter text-sm blue_gradient cursor-pointer"
+        onClick={() => handleTagClick && handleTagClick(post.tag)}>
+          {post.tag}
+        </p>
+        <p className="my-2 font-satoshi text-sm text-gray-700">
+          {post.description}
+        </p>
+
+
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
             src={post.creator.image}
             alt="user_image"
-            width={40}
-            height={40}
+            width={36}
+            height={36}
             className="rounded-full object-contain"
           />
 
-          <div className="flex flex-col">
-            <h3 className="font-satoshi font-semibold text-gray-900">
-              {post.creator.username}
-            </h3>
-            <p className="font-inter text-sm text-gray-500">
-              {post.creator.email}
-            </p>
-          </div>
+          <h3 className="font-satoshi text-gray-900 text-xs font-semibold">
+            {post.creator.username}
+          </h3>
+          
         </div>
-
       </div>
       
+      
 
-      <h3 className="my-2 font-satoshi font-semibold text-gray-900">
-        {post.toolName}
-      </h3>
-      <p className="my-2 font-satoshi text-sm text-gray-700">
-        {post.description}
-      </p>
-      <p className="font-inter text-sm blue_gradient cursor-pointer"
-      onClick={() => handleTagClick && handleTagClick(post.tag)}>
-        {post.tag}
-      </p>
-      <Link href={post.url}
-      className="font-inter text-sm blue_gradient cursor-pointer"
-      >
-        Website
-      </Link>
+      
+      
+      
 
       {session?.user.id === post.creator._id && pathName === '/profile' && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
