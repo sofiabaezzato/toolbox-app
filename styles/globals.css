@@ -172,3 +172,7 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+.badge {
+  @apply flex justify-center break-inside-avoid rounded-full text-white font-semibold my-1 py-1 px-3 bg-red-600 justify-center
+}

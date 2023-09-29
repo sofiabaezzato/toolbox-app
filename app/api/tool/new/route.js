@@ -6,13 +6,16 @@ export const POST = async (request) => {
 
   try {
     await connectToDB()
-    const newTool = new Tool({ creator: userId, toolName, description, tag, url, price })
 
+    const tagsArray = Array.isArray(tag) ? tag : [tag];
+
+    const newTool = new Tool({ creator: userId, toolName, description, tag: tagsArray, url, price })
+    
     await newTool.save()
 
     return new Response(JSON.stringify(newTool), { status: 201 })
   } catch (error) {
-    console.log(error.message)
+    console.log("This is a API route error: " + error.message)
     return new Response("Failed to add a new tool", { status: 500 })
   }
 }

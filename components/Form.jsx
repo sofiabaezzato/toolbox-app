@@ -1,6 +1,61 @@
 import Link from "next/link"
+import { useState } from "react"
+
+const TagsInput = props => {
+  const [tags, setTags] = useState([])
+  
+  /* const addTags = (e) => {
+    console.log(e)
+    if(e.code === "Space") {
+      e.preventDefault()
+      setTags([...tags, e.target.value])
+      props.selected([...tags, e.target.value])
+      e.target.value = ""
+    }
+  } */
+
+  const addTags = (e) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      const newTag = e.target.value.trim(); // Remove leading/trailing spaces
+      if (newTag) {
+        // Only add non-empty tags
+        setTags((prevTags) => [...prevTags, newTag]);
+        e.target.value = "";
+        props.selected([...tags, newTag]);
+      }
+    }
+  };
+
+  return (
+    <div>
+      <ul className="flex gap-2">
+        {tags.map((tag, index) => (
+          <li key={index} className="badge cursor-pointer">
+            <span
+            className="text-xs"
+            >{tag}</span>
+          </li>
+        ))}
+      </ul>
+      <input
+        type="text"
+        
+        onKeyUp={addTags}
+        /* onChange={(e) => setPost({...post, tag: tags})} */
+        placeholder="Press enter to add a new tag"
+        className="form_input"
+      />
+    </div>
+  )
+  
+}
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  const selected = (tags) => {
+    setPost({...post, tag: tags})
+  }
+
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
@@ -47,13 +102,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             <span className="font-normal">(#team-work, #no-code, #marketing, #productivity)</span>
           </span>
 
-          <input
-            type="text"
-            value={post.tag}
-            onChange={(e) => setPost({...post, tag: e.target.value})}
-            placeholder="#tag" required
-            className="form_input"
-          />
+          <TagsInput selected={selected}/>
         </label>
 
         <label>

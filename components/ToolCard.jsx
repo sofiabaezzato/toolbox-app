@@ -31,11 +31,21 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           </Link>
             
         </div>
-        <p className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}>
-          {post.tag}
-        </p>
-        <p className="my-2 font-satoshi text-sm text-gray-700">
+        <ul className="flex gap-2">
+          {post.tag.map((tag, index) => (
+            <li
+              key={index}
+              onClick={() => handleTagClick && handleTagClick(post.tag)}
+              className="badge cursor-pointer"
+              >
+              <span
+              className="text-xs"
+              >{tag}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p className="my-4 font-satoshi text-sm text-gray-700">
           {post.description}
         </p>
 

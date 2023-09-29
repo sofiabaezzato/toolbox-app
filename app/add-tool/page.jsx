@@ -14,7 +14,7 @@ const AddTool = () => {
   const [post, setPost] = useState({
     toolName: '',
     description: '',
-    tag: '',
+    tag: [],
     url: '',
     price: 'free',
   })
