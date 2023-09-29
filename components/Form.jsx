@@ -11,7 +11,6 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       <p className="desc text-left max-w-md">{type} and share amazing tools with the world.</p>
 
       <form
-        action=""
         onSubmit={handleSubmit}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
@@ -24,7 +23,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             type="text"
             value={post.toolName}
             onChange={(e) => setPost({...post, toolName: e.target.value})}
-            placeholder="Write you tool name here..." required
+            placeholder="Write your tool name here..." required
             className="form_input"
           />
         </label>
@@ -56,6 +55,36 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             className="form_input"
           />
         </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Website
+          </span>
+
+          <input
+            type="url"
+            value={post.url}
+            onChange={(e) => setPost({...post, url: e.target.value})}
+            placeholder="https://www.toolbox.io" required
+            className="form_input"
+          />
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Pricing
+          </span>
+
+          <select
+            value={post.price}
+            onChange={(e) => setPost({...post, price: e.target.value})}
+            className="form_select"
+          >
+            <option value="free">Free</option>
+            <option value="pay">Pay</option>  
+          </select>
+        </label>
+
 
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link
