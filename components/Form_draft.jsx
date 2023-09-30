@@ -6,14 +6,19 @@ import Image from "next/image";
 const TagsInput = ({ defaultTags = [], selected }) => {
   const [tags, setTags] = useState(defaultTags)
   
+  /* const addTags = (e) => {
+    console.log(e)
+    if(e.code === "Space") {
+      e.preventDefault()
+      setTags([...tags, e.target.value])
+      props.selected([...tags, e.target.value])
+      e.target.value = ""
+    }
+  } */
+
   useEffect(() => {
     setTags(defaultTags);
   }, [defaultTags]);
-
-  const updateTags = (newTags) => {
-    setTags(newTags);
-    selected(newTags);
-  };
 
   const addTags = (e) => {
     if (e.code === "Space") {
@@ -21,16 +26,19 @@ const TagsInput = ({ defaultTags = [], selected }) => {
       const newTag = e.target.value.trim(); // Remove leading/trailing spaces
       if (newTag) {
         // Only add non-empty tags
-        updateTags([...tags, newTag]);
+        setTags((prevTags) => [...prevTags, newTag]);
         e.target.value = "";
+        selected([...tags, newTag]);
       }
     }
   };
 
   const removeTag = (indexToRemove) => {
-    const updatedTags = tags.filter((_, index) => index !== indexToRemove);
-    updateTags(updatedTags);
-  };
+    setTags(tags.filter((_, index) => index !== indexToRemove))
+    selected(tags.filter((_, index) => index !== indexToRemove))
+  }
+
+  
 
   return (
     <div>

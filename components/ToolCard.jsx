@@ -59,7 +59,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             className="rounded-full object-contain"
           />
 
-          <h3 className="font-satoshi text-gray-900 text-xs font-semibold">
+          <h3 className="font-satoshi text-gray-900 text-xs">
             {post.creator.username}
           </h3>
           

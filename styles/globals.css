@@ -174,5 +174,5 @@
 }
 
 .badge {
-  @apply flex justify-center break-inside-avoid rounded-full text-white font-semibold my-1 py-1 px-3 bg-red-600 justify-center
+  @apply flex justify-center break-inside-avoid rounded-full text-white font-semibold my-1 py-1 px-2 bg-red-600
 }
