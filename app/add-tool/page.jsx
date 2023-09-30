@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-import Form from '@components/Form_draft'
+import Form from '@components/Form'
 
 const AddTool = () => {
   const router = useRouter()
@@ -40,7 +40,7 @@ const AddTool = () => {
         router.push("/")
       }
     } catch (error) {
-      console.log(error)
+      console.log("Error adding the tool :" + error.message)
     } finally {
       setSubmitting(false)
     }

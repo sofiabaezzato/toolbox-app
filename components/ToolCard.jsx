@@ -18,16 +18,17 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             {post.toolName}
           </h3>
 
-          <Link href={post.url}
+          <Link href={post.url} target="_blank"
           className="font-inter text-xs blue_gradient cursor-pointer font-semibold flex gap-2 items-center"
           >
+            Website
             <Image
-              src="/icons/link.svg"
-              width={18}
-              height={18}
+              src="/icons/right-arrow.svg"
+              width={12}
+              height={12}
               alt="link icon"
             />
-            Website
+            
           </Link>
             
         </div>
@@ -38,14 +39,15 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           "w-2 h-2 rounded-full bg-red-400" :
           "w-2 h-2 rounded-full bg-green-400"}
           ></div>
-          <p className="font-satoshi text-xs text-gray-700">{post.price.charAt(0).toUpperCase() + post.price.slice(1)}</p>
+          <p className="font-satoshi text-xs text-gray-700">
+            {post.price.charAt(0).toUpperCase() + post.price.slice(1)}</p>
         </div>
 
         <ul className="flex gap-2">
           {post.tag.map((tag, index) => (
             <li
               key={index}
-              onClick={() => handleTagClick && handleTagClick(post.tag)}
+              onClick={() => handleTagClick && handleTagClick(post.tag[index])}
               className="badge cursor-pointer"
               >
               <span

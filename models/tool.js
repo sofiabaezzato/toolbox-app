@@ -14,7 +14,8 @@ const ToolSchema = new Schema({
     required: [true, 'Description is required.']
   },
   tag: {
-    type: [String]
+    type: [String],
+    required: [true, 'Tags are required.']
   },
   url: {
     type: String,

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import Form from '@components/Form_draft'
+import Form from '@components/Form'
 
 const EditTool = () => {
   const router = useRouter()

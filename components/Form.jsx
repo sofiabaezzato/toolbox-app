@@ -3,73 +3,24 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react"
 import Image from "next/image";
 
-const TagsInput = ({ defaultTags = [], selected }) => {
-  const [tags, setTags] = useState(defaultTags)
-  
-  useEffect(() => {
-    setTags(defaultTags);
-  }, [defaultTags]);
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
-  const updateTags = (newTags) => {
-    setTags(newTags);
-    selected(newTags);
+  const removeTag = (indexToRemove) => {
+    const updatedPost = { ...post }
+    updatedPost.tag.splice(indexToRemove, 1)
+    setPost(updatedPost);
   };
 
   const addTags = (e) => {
-    if (e.code === "Space") {
-      e.preventDefault();
-      const newTag = e.target.value.trim(); // Remove leading/trailing spaces
-      if (newTag) {
-        // Only add non-empty tags
-        updateTags([...tags, newTag]);
-        e.target.value = "";
-      }
+    let newTag = e.target.value.trim().toLowerCase();
+    if (newTag) {
+      setPost((prevPost) => ({ ...prevPost, tag: [...prevPost.tag, newTag] }))
     }
-  };
-
-  const removeTag = (indexToRemove) => {
-    const updatedTags = tags.filter((_, index) => index !== indexToRemove);
-    updateTags(updatedTags);
-  };
-
-  return (
-    <div>
-      <ul className="flex gap-2">
-        {tags.map((tag, index) => (
-          <li key={index} className="badge flex flex-center gap-2 justify-between">
-            <span
-            className="text-xs"
-            >{tag}</span>
-            <div className="bg-white rounded-full p-0.5 cursor-pointer"
-            onClick={() => removeTag(index)}
-            >
-              <Image
-                src='/icons/close.svg'
-                width={12}
-                height={12}
-                alt="close"
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
-      <input
-        type="text"
-        onKeyUp={addTags}
-        placeholder="Press spacebar to add a new tag"
-        className="form_input"
-      />
-    </div>
-  ) 
-}
-
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  const currentUrl = usePathname()
-
-  const selected = (tags) => {
-    setPost({...post, tag: tags})
+    e.target.value = "";
   }
 
+  const currentUrl = usePathname()
+  
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
@@ -116,7 +67,35 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             <span className="font-normal">(#team-work, #no-code, #marketing, #productivity)</span>
           </span>
 
-          <TagsInput selected={selected} defaultTags={post.tag}/>
+          
+        <div>
+          <ul className="flex gap-2">
+            {post.tag.map((tag, index) => (
+              <li key={index} className="badge flex flex-center gap-1 justify-between">
+                <span
+                className="text-xs"
+                >{tag}</span>
+                <div 
+                onClick={() => removeTag(index)}
+                >
+                  <Image
+                    src='/icons/close.svg'
+                    width={18}
+                    height={18}
+                    alt="close"
+                    className="p-0.5 cursor-pointer"
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+          <input
+            type="text"
+            onKeyUp={(e) => (e.code === "Space" ? addTags(e) : null)}
+            placeholder="Press spacebar to add a new tag"
+            className="form_input"
+          />
+        </div>
         </label>
 
         <label>
