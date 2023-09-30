@@ -19,7 +19,7 @@ export const GET = async (request, { params }) => {
 
 // PATCH (update)
 export const PATCH = async (request, { params }) => {
-  const { tool, tag } = await request.json()
+  const { toolName, description, url, tag, price } = await request.json()
 
   try {
     await connectToDB()
@@ -28,8 +28,11 @@ export const PATCH = async (request, { params }) => {
 
     if(!existingTool) return new Response("Tool not found", { status: 404})
 
-    existingTool.tool = tool
+    existingTool.toolName = toolName
+    existingTool.description = description
+    existingTool.url = url
     existingTool.tag = tag
+    existingTool.price = price
 
     await existingTool.save()
 

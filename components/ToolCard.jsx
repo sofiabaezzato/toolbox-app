@@ -13,8 +13,8 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   return (
     <div className="tool_card">
       <div className=" flex flex-col items-start">
-        <div className="flex justify-between items-center w-full" >
-          <h3 className="font-satoshi font-semibold text-gray-900">
+        <div className="flex justify-between items-center w-full mb-1" >
+          <h3 className="font-satoshi text-xl font-semibold text-gray-900">
             {post.toolName}
           </h3>
 
@@ -31,6 +31,16 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           </Link>
             
         </div>
+
+        <div className="flex justify-center gap-2 items-center mb-2">
+          <div
+          className={post.price.toLowerCase() === 'pay' ?
+          "w-2 h-2 rounded-full bg-red-400" :
+          "w-2 h-2 rounded-full bg-green-400"}
+          ></div>
+          <p className="font-satoshi text-xs text-gray-700">{post.price.charAt(0).toUpperCase() + post.price.slice(1)}</p>
+        </div>
+
         <ul className="flex gap-2">
           {post.tag.map((tag, index) => (
             <li
@@ -45,7 +55,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           ))}
         </ul>
 
-        <p className="my-4 font-satoshi text-sm text-gray-700">
+        <p className="mt-4 mb-6 font-satoshi text-sm text-gray-700">
           {post.description}
         </p>
 
@@ -54,8 +64,8 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           <Image
             src={post.creator.image}
             alt="user_image"
-            width={36}
-            height={36}
+            width={34}
+            height={34}
             className="rounded-full object-contain"
           />
 

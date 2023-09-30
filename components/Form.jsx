@@ -60,8 +60,7 @@ const TagsInput = ({ defaultTags = [], selected }) => {
         className="form_input"
       />
     </div>
-  )
-  
+  ) 
 }
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {

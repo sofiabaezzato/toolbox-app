@@ -16,7 +16,7 @@ const EditTool = () => {
     description: '',
     tag: [],
     url: '',
-    price: 'free',
+    price: '',
   })
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const EditTool = () => {
 
     if(!toolId) return alert('Tool id not found')
     try {
+      console.log(post.price)
       const response = await fetch(`/api/tool/${toolId}`, {
         method: "PATCH",
         body: JSON.stringify({

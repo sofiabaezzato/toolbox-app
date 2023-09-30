@@ -1,5 +1,5 @@
 # ToolBox App
-A Next.js app to discover and share powerful tools
+A Next.js full stack app. ToolBox is an open-source database of the most useful tools on the internet.
 
 ## TODO
 - Implement Search
@@ -13,6 +13,8 @@ A Next.js app to discover and share powerful tools
 
 ## DONE
 - add multiple badge tags feature
-- delete tag in edit form
+- delete tags in edit form
 - update tags correctly
   
+## KNOWN BUGS
+- can't update price tier and tool name [SOLVED]
