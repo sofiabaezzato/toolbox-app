@@ -1,22 +1,63 @@
 # ToolBox App
-A Next.js full stack app. ToolBox is an open-source database of the most useful tools on the internet.
 
-## TODO
+ToolBox is an open-source Next.js full-stack application designed to serve as a comprehensive database of the most useful tools available on the internet. Whether you're a developer, designer, marketer, or just someone looking for handy online resources, ToolBox is here to help you discover and share the best tools.
 
-- Implement View other profiles
-- Unique color for each tag
+## Features
+
+- **Tool Discovery:** Easily find a wide range of tools for various purposes, from development and design to productivity and more.
+
+- **User Profiles:** Create your own profile, customize it, and share your favorite tools with the community.
+
+- **Tagging System:** Categorize tools with tags for easy searching and filtering.
+
+- **Search Functionality:** Quickly locate tools by name, tag, or the username of the contributor.
+
+- **User Interaction:** Like and comment on tools, and even save your favorites for later.
+
+## To-Do List
+
+Here's a list of features and improvements I'm working on:
+
+- **View Other Profiles:** Get inspired by exploring profiles of other users and discover their favorite tools.
+
+- **Unique Tag Colors:** Assign distinct colors to tags to make tool categorization visually appealing and intuitive.
+
+- **Tag Duplication Prevention:** Implement a feature that prevents the addition of duplicate tags for a cleaner tagging system.
+
+## Changelog
+
+- **[Version 0.0.2] - [30/09/2023]:**
+  - add multiple tags feature
+  - delete tags in edit form
+  - update tags correctly
+  - display free or pay tier
+  - implement **Search**
+    - search by tool name
+    - search by tag
+    - search by username
+  - implement click on tags
+  - bug fix
+
+- **[Version 0.0.1] - [28/09/2023]:** hello world
+
+## Known Bugs
+There's nothing here :)
+
+## Live
 
 
-## DONE
-- add multiple badge tags feature
-- delete tags in edit form
-- update tags correctly
-- Display free or pay tier
-- Implement Search
-  - search by tool name
-  - search by tag
-  - search by username
-- Implement Click & tag
-  
-## KNOWN BUGS
-- can't update price tier and tool name [SOLVED]
+## Contributing
+
+We welcome contributions from the open-source community. If you'd like to help improve ToolBox, please follow our contribution guidelines:
+
+- Report any bugs or issues you encounter by creating a GitHub issue.
+
+- Suggest new features and improvements by submitting a feature request.
+
+- Contribute code by forking the repository and opening a pull request.
+
+## License
+
+ToolBox is distributed under the [MIT License](LICENSE). Feel free to use, modify, and share this application according to the terms of the license.
+
+I hope you enjoy using ToolBox.
