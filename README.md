@@ -2,6 +2,8 @@
 
 ToolBox is an open-source Next.js full-stack application designed to serve as a comprehensive database of the most useful tools available on the internet. Whether you're a developer, designer, marketer, or just someone looking for handy online resources, ToolBox is here to help you discover and share the best tools.
 
+![screenshot](./public/images/screenshot%20(1).png)
+
 ## Features
 
 - **Tool Discovery:** Easily find a wide range of tools for various purposes, from development and design to productivity and more.
