@@ -83,7 +83,7 @@ const Feed = () => {
         placeholder='Search for a tool name, a tag or a username'
         value={searchText}
         onChange={handleSearchChange}
-        className='font-medium focus:border-black focus:outline-none focus:ring-0'
+        className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
         />
         <button
         className='self-end'
