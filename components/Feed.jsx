@@ -76,7 +76,7 @@ const Feed = () => {
 
   return (
     <section className='feed'>
-      <form className="relative flex max-w-xl search_input flex-between">
+      <form className="relative flex max-w-xl search_input flex-between min-[40px]:">
         <input
         id='search'
         type="text"
