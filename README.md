@@ -14,7 +14,7 @@ ToolBox is an open-source Next.js full-stack application designed to serve as a 
 
 - **Search Functionality:** Quickly locate tools by name, tag, or the username of the contributor.
 
-- **User Interaction:** Like and comment on tools, and even save your favorites for later.
+- **User Interaction:** Visit other users' profile
 
 ## To-Do List
 Here's a list of features and improvements I'm working on:
