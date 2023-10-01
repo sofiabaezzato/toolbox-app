@@ -90,7 +90,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           </ul>
           <input
             type="text"
-            onKeyUp={(e) => (e.code === "Space" ? addTags(e) : null)}
+            onKeyUp={(e) => (e.key === " " ? addTags(e) : null)}
             placeholder="Press spacebar to add a new tag"
             className="form_input"
           />
