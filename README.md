@@ -2,7 +2,7 @@
 
 ToolBox is an open-source Next.js full-stack application designed to serve as a comprehensive database of the most useful tools available on the internet. Whether you're a developer, designer, marketer, or just someone looking for handy online resources, ToolBox is here to help you discover and share the best tools.
 
-![screenshot](./public/images/screenshot%20(1).png)
+![screenshot](./public/images/screenshot.png)
 
 ## Features
 
@@ -21,16 +21,19 @@ Here's a list of features and improvements I'm working on:
 
 - **View Other Profiles:** Get inspired by exploring profiles of other users and discover their favorite tools. [DONE]
 
-- **Display cards in the feed in alphabetical order**
+- **Display cards in the feed in alphabetical order** [DONE]
+
+- **Tag suggestion in Form Input**
 
 - **Unique Tag Colors:** Assign distinct colors to tags to make tool categorization visually appealing and intuitive.
 
 - **Tag Duplication Prevention:** Implement a feature that prevents adding duplicate tags for a cleaner tagging system.
 
+- **Add dark mode**
+
 
 
 ## Changelog
-
 - **[Version 0.0.2] - [30/09/2023]:**
   - add multiple tags feature
   - delete tags in edit form
@@ -46,7 +49,7 @@ Here's a list of features and improvements I'm working on:
 - **[Version 0.0.1] - [28/09/2023]:** hello world
 
 ## Known Bugs
-There's nothing here :)
+- Cards are displayed alphabetically in columns instead of rows.
 
 ## Live
 

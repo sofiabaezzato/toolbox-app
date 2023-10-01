@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react"
 import Image from "next/image";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {

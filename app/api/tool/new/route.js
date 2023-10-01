@@ -3,8 +3,7 @@ import Tool from "@models/tool"
 
 export const POST = async (request) => {
   const { userId, toolName, description, tag, url, price } = await request.json()
-  console.log("Received Data:", { userId, toolName, description, tag, url, price });
-
+  /* console.log("Received Data:", { userId, toolName, description, tag, url, price }); */
 
   try {
     await connectToDB()
@@ -14,7 +13,7 @@ export const POST = async (request) => {
     const newTool = new Tool({ creator: userId, toolName, description, tag: tagsArray, url, price })
     
     await newTool.save()
-    console.log("Saved Tool:", newTool);
+    /* console.log("Saved Tool:", newTool); */
     return new Response(JSON.stringify(newTool), { status: 201 })
   } catch (error) {
     console.log("This is a API route error: " + error.message)

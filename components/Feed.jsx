@@ -7,7 +7,9 @@ import ToolCard from './ToolCard'
 const ToolCardList = ({ data, handleTagClick }) => {
   return (
     <div className="mt-10 tool_layout">
-      {data.map((post) => (
+      {data
+      .sort((a, b) => a.toolName > b.toolName ? 1 : -1)
+      .map((post) => (
         <ToolCard
           key={post._id}
           post={post}

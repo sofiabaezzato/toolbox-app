@@ -34,9 +34,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               height={12}
               alt="link icon"
             />
-            
           </Link>
-            
         </div>
 
         <div className="flex justify-center gap-2 items-center mb-2">
@@ -67,7 +65,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           {post.description}
         </p>
 
-
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
         onClick={handleProfileClick}
         >
@@ -78,19 +75,12 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             height={34}
             className="rounded-full object-contain"
           />
-
           <p className="font-satoshi text-gray-900 text-xs">
             @{post.creator.username}
           </p>
           
         </div>
       </div>
-      
-      
-
-      
-      
-      
 
       {session?.user.id === post.creator._id && pathName === '/profile' && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
