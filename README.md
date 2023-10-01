@@ -8,7 +8,7 @@ ToolBox is an open-source Next.js full-stack application designed to serve as a 
 
 - **Tool Discovery:** Easily find a wide range of tools for various purposes, from development and design to productivity and more.
 
-- **User Profiles:** Create your own profile, customize it, and share your favorite tools with the community.
+- **User Profiles:** Create your own profile and share your favorite tools with the community.
 
 - **Tagging System:** Categorize tools with tags for easy searching and filtering.
 
@@ -17,14 +17,17 @@ ToolBox is an open-source Next.js full-stack application designed to serve as a 
 - **User Interaction:** Like and comment on tools, and even save your favorites for later.
 
 ## To-Do List
-
 Here's a list of features and improvements I'm working on:
 
-- **View Other Profiles:** Get inspired by exploring profiles of other users and discover their favorite tools.
+- **View Other Profiles:** Get inspired by exploring profiles of other users and discover their favorite tools. [DONE]
+
+- **Display cards in the feed in alphabetical order**
 
 - **Unique Tag Colors:** Assign distinct colors to tags to make tool categorization visually appealing and intuitive.
 
-- **Tag Duplication Prevention:** Implement a feature that prevents the addition of duplicate tags for a cleaner tagging system.
+- **Tag Duplication Prevention:** Implement a feature that prevents adding duplicate tags for a cleaner tagging system.
+
+
 
 ## Changelog
 
