@@ -31,6 +31,8 @@ Here's a list of features and improvements I'm working on:
 
 - **Add dark mode**
 
+- add clear input in search bar
+
 
 
 ## Changelog
