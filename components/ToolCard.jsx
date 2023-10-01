@@ -20,7 +20,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     <div className="tool_card">
       <div className=" flex flex-col items-start">
         <div className="flex justify-between items-center w-full mb-1 gap-2" >
-          <h3 className="font-satoshi text-xl font-semibold text-gray-900 whitespace-normal">
+          <h3 className="font-satoshi text-xl font-semibold text-gray-900">
             {post.toolName}
           </h3>
 
