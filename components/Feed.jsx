@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 import ToolCard from './ToolCard'
 
@@ -68,18 +69,34 @@ const Feed = () => {
     setSearchResults(searchResult)
   }
 
+  const handleClearInput = (e) => {
+    e.preventDefault()
+    setSearchText('')
+  }
+
   return (
     <section className='feed'>
-      <form className="relative w-full flex-center max-w-xl">
+      <form className="relative flex max-w-xl search_input flex-between">
         <input
+        id='search'
         type="text"
         placeholder='Search for a tool name, a tag or a username'
         value={searchText}
         onChange={handleSearchChange}
-        required
-        className='search_input peer'
-        
+        className='font-medium focus:border-black focus:outline-none focus:ring-0'
         />
+        <button
+        className='self-end'
+        onClick={handleClearInput}
+        >
+          <Image
+          src="icons/close.svg"
+          width={20}
+          height={20}
+          alt='clear-input'
+          className={searchText === '' ? "hidden" : "visible"}
+          ></Image>
+        </button>
       </form>
 
       {searchText ? (
