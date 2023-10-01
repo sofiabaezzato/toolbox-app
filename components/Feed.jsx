@@ -80,7 +80,7 @@ const Feed = () => {
         <input
         id='search'
         type="text"
-        placeholder='Search for a tool name, a tag or a username'
+        placeholder='Search a tool name or a tag'
         value={searchText}
         onChange={handleSearchChange}
         className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
