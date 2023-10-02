@@ -35,7 +35,7 @@ Here's a list of features and improvements I'm working on:
 
 - **Add loading page**
 
-- **Create custom alert before deletion**
+- **Create custom alert popup before deletion**
 
 ## Changelog
 - **[Version 0.0.2] - [30/09/2023]:**
@@ -55,6 +55,7 @@ Here's a list of features and improvements I'm working on:
 ## Known Bugs
 - Cards are displayed alphabetically in columns instead of rows
 - On mobile: can't add tags with spacebar press
+- Sometimes a page reload may be required to render the cards, but I suspect this issue is related to Vercel
 
 ## Live
 [LIVE PREVIEW](https://toolbox-app-delta.vercel.app/)
