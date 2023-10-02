@@ -20,7 +20,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     <div className="tool_card">
       <div className=" flex flex-col items-start">
         <div className="flex justify-between items-center w-full mb-1 gap-2" >
-          <h3 className="font-satoshi text-xl font-semibold text-gray-900">
+          <h3 className="font-satoshi text-xl font-semibold text-gray-900 truncate">
             {post.toolName}
           </h3>
 
@@ -61,7 +61,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           ))}
         </ul>
 
-        <p className="mt-4 mb-6 font-satoshi text-sm text-gray-700">
+        <p className="mt-4 mb-6 font-satoshi text-sm text-gray-700 max-w-full">
           {post.description}
         </p>
 
