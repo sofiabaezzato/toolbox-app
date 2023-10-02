@@ -118,7 +118,7 @@
 }
 
 .tool_layout {
-  @apply space-y-6 py-8 md:columns-2 /* gap-6 */  xl:columns-3;
+  @apply space-y-6 py-8 md:columns-2 /* gap-6 */  xl:columns-3 max-w-full;
 }
 
 /* Feed Component */
@@ -174,5 +174,5 @@
 }
 
 .badge {
-  @apply flex justify-center break-inside-avoid border rounded-md text-red-600 font-medium my-1 py-0.5 px-1.5 bg-red-600/5 border-red-600
+  @apply flex justify-center break-inside-avoid border rounded-md text-red-600 font-medium py-0.5 px-1.5 bg-red-600/5 border-red-600
 }

@@ -63,38 +63,36 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Tag {' '}
-            <span className="font-normal">(#team-work, #no-code, #marketing, #productivity)</span>
+            <span className="font-normal">(team-work, no-code, marketing, productivity, etc)</span>
           </span>
 
           
-        <div>
-          <ul className="flex gap-2">
-            {post.tag.map((tag, index) => (
-              <li key={index} className="badge flex flex-center gap-1 justify-between">
-                <span
-                className="text-xs"
-                >{tag}</span>
-                <div 
-                onClick={() => removeTag(index)}
-                >
-                  <Image
-                    src='/icons/close.svg'
-                    width={18}
-                    height={18}
-                    alt="close"
-                    className="p-0.5 cursor-pointer"
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-          <input
-            type="text"
-            onKeyUp={(e) => (e.key === " " ? addTags(e) : null)}
-            placeholder="Press spacebar to add a new tag"
-            className="form_input"
-          />
-        </div>
+          <ul className="flex gap-1 flex-wrap my-1">
+              {post.tag.map((tag, index) => (
+                <li key={index} className="badge flex flex-center ">
+                  <span
+                  className="text-xs"
+                  >{tag}</span>
+                  <div 
+                  onClick={() => removeTag(index)}
+                  >
+                    <Image
+                      src='/icons/close.svg'
+                      width={18}
+                      height={18}
+                      alt="close"
+                      className="p-0.5 cursor-pointer"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <input
+              type="text"
+              onKeyUp={(e) => (e.key === " " ? addTags(e) : null)}
+              placeholder="Press spacebar to add a new tag"
+              className="form_input"
+            />
         </label>
 
         <label>

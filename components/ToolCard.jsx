@@ -47,7 +47,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             {post.price.charAt(0).toUpperCase() + post.price.slice(1)}</p>
         </div>
 
-        <ul className="flex gap-2">
+        <ul className="flex gap-1 flex-wrap my-1">
           {post.tag.map((tag, index) => (
             <li
               key={index}

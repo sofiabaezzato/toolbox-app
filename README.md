@@ -23,6 +23,8 @@ Here's a list of features and improvements I'm working on:
 
 - **Display cards in the feed in alphabetical order** [DONE]
 
+- **Add clear input button in search bar** [DONE]
+
 - **Tag suggestion in Form Input**
 
 - **Unique Tag Colors:** Assign distinct colors to tags to make tool categorization visually appealing and intuitive.
@@ -31,7 +33,8 @@ Here's a list of features and improvements I'm working on:
 
 - **Add dark mode**
 
-- add clear input in search bar
+- **Add loading page**
+
 
 
 
@@ -51,7 +54,8 @@ Here's a list of features and improvements I'm working on:
 - **[Version 0.0.1] - [28/09/2023]:** hello world
 
 ## Known Bugs
-- Cards are displayed alphabetically in columns instead of rows.
+- Cards are displayed alphabetically in columns instead of rows
+- On mobile: can't add a tag with spacebar press
 
 ## Live
 [LIVE PREVIEW](https://toolbox-app-delta.vercel.app/)
