@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  const userOS = navigator.userAgent
+  const userOS = window.navigator.userAgent
   
   if (userOS.indexOf("Windows") != -1) {
     alert("windows")
