@@ -11,7 +11,9 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
       <p className="desc text-left">{desc}</p>
 
       <div className="mt-10 tool_layout">
-        {data.map((post) => (
+        {data
+        .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
+        .map((post) => (
           <ToolCard
             key={post._id}
             post={post}
