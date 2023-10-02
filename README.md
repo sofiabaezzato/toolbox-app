@@ -35,6 +35,8 @@ Here's a list of features and improvements I'm working on:
 
 - **Add loading page**
 
+- **Create custom alert before deletion**
+
 ## Changelog
 - **[Version 0.0.2] - [30/09/2023]:**
   - add multiple tags feature

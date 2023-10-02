@@ -88,7 +88,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             </ul>
             <input
               type="text"
-              onKeyDown={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
+              onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
               
               placeholder="team-work, no-code, AI, productivity..."
               className="form_input"
