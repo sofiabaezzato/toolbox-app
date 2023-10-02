@@ -35,9 +35,6 @@ Here's a list of features and improvements I'm working on:
 
 - **Add loading page**
 
-
-
-
 ## Changelog
 - **[Version 0.0.2] - [30/09/2023]:**
   - add multiple tags feature
@@ -55,7 +52,7 @@ Here's a list of features and improvements I'm working on:
 
 ## Known Bugs
 - Cards are displayed alphabetically in columns instead of rows
-- On mobile: can't add a tag with spacebar press
+- On mobile: can't add tags with spacebar press
 
 ## Live
 [LIVE PREVIEW](https://toolbox-app-delta.vercel.app/)

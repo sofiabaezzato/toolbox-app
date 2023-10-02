@@ -11,7 +11,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   };
 
   const addTags = (e) => {
-    let newTag = e.target.value.trim().toLowerCase();
+    let newTag = e.target.value.trim().toLowerCase().replace(/,/g, "");
     if (newTag) {
       setPost((prevPost) => ({ ...prevPost, tag: [...prevPost.tag, newTag] }))
     }
@@ -63,7 +63,6 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Tag {' '}
-            <span className="font-normal">(team-work, no-code, marketing, productivity, etc)</span>
           </span>
 
           
@@ -89,10 +88,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             </ul>
             <input
               type="text"
-              onKeyUp={(e) => (e.key === " " ? addTags(e) : null)}
-              placeholder="Press spacebar to add a new tag"
+              onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
+              placeholder="team-work, no-code, AI, productivity..."
               className="form_input"
             />
+            <em
+            className="font-satoshi text-sm text-gray-500 pl-3">
+              Press spacebar to add a new tag</em>
         </label>
 
         <label>
