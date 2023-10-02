@@ -89,7 +89,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             <input
               type="text"
               onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
-              onTouchEnd={(e) => (e.which === 32)}
+              onTouchEnd={(e) => (e.which === 32 ? addTags(e) : null)}
               placeholder="team-work, no-code, AI, productivity..."
               className="form_input"
             />
