@@ -3,17 +3,6 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  const userOS = window.navigator.userAgent
-  
-  if (userOS.indexOf("Windows") != -1) {
-    alert("windows")
-  } else if (userOS.indexOf("Mac OS") != -1) {
-    alert("Mac")
-  } else if (userOS.indexOf("Linux") != -1) {
-    alert("Linux")
-  } else {
-    alert("Mobile")
-  }
 
   const removeTag = (indexToRemove) => {
     const updatedPost = { ...post }
@@ -99,7 +88,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             </ul>
             <input
               type="text"
-              onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
+              onKeyDown={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
               
               placeholder="team-work, no-code, AI, productivity..."
               className="form_input"
