@@ -65,14 +65,14 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           {post.description}
         </p>
 
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
+        <div className="flex-1 flex justify-start items-center gap-2 cursor-pointer"
         onClick={handleProfileClick}
         >
           <Image
             src={post.creator.image}
             alt="user_image"
-            width={34}
-            height={34}
+            width={30}
+            height={30}
             className="rounded-full object-contain"
           />
           <p className="font-satoshi text-gray-900 text-xs">
