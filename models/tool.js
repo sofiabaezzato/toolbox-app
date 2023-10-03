@@ -15,7 +15,7 @@ const ToolSchema = new Schema({
   },
   tag: {
     type: [String],
-    required: [true, 'Tags are required.']
+    required: false
   },
   url: {
     type: String,
