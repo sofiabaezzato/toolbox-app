@@ -8,7 +8,12 @@ import Form from '@components/Form'
 
 const AddTool = () => {
   const router = useRouter()
-  const { data: session } = useSession()
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push('/')
+    }
+  })
 
   const [submitting, setSubmitting] = useState(false)
   const [post, setPost] = useState({
