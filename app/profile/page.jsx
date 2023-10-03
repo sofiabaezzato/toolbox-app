@@ -20,6 +20,9 @@ const MyProfile = () => {
     }
 
     if(session?.user.id) fetchPosts()
+    else {
+      router.push('/')
+    }
   }, [])
 
   const handleEdit = (post) => {

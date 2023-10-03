@@ -4,8 +4,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const Nav = () => {
+    const router = useRouter()
     const { data: session } = useSession()
 
     const [providers, setProviders ] = useState(null)
@@ -42,7 +44,11 @@ const Nav = () => {
                             Add Tool
                         </Link>
 
-                        <button type="button" className="outline_btn" onClick={signOut}>
+                        <button type="button" className="outline_btn"
+                        onClick={() => {
+                            signOut({ callbackUrl: 'https://toolbox-app-delta.vercel.app/' })
+                        }}
+                        >
                             Sign Out
                         </button>
 
@@ -63,7 +69,7 @@ const Nav = () => {
                                 <button
                                     type="button"
                                     key={provider.name}
-                                    onClick={() => signIn(provider.id)}
+                                    onClick={() => signIn(provider.id, { callbackUrl: 'https://toolbox-app-delta.vercel.app/'})}
                                     className="black_btn"
                                 >
                                     Sign In
@@ -109,7 +115,7 @@ const Nav = () => {
                                     type="button"
                                     onClick={() => {
                                         setToggleDropdown(false)
-                                        signOut()
+                                        signOut({ callbackUrl: 'https://toolbox-app-delta.vercel.app/' })
                                     }}
                                     className="mt-5 w-full black_btn"
                                 >
@@ -125,7 +131,7 @@ const Nav = () => {
                                 <button
                                     type="button"
                                     key={provider.name}
-                                    onClick={() => signIn(provider.id)}
+                                    onClick={() => signIn(provider.id, { callbackUrl: 'https://toolbox-app-delta.vercel.app/'})}
                                     className="black_btn"
                                 >
                                     Sign In
