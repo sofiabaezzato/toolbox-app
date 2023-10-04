@@ -37,6 +37,10 @@ Here's a list of features and improvements I'm working on:
 
 - **Create custom alert popup before deletion**
 
+- **Option to change username**
+
+- **Upvote or downvote a tool and order tools by # of votes**
+
 ## Changelog
 - **[Version 0.0.2] - [30/09/2023]:**
   - add multiple tags feature
@@ -51,11 +55,6 @@ Here's a list of features and improvements I'm working on:
   - bug fix
 
 - **[Version 0.0.1] - [28/09/2023]:** hello world
-
-## Known Bugs
-- Cards are displayed alphabetically in columns instead of rows
-- On mobile: can't add tags with spacebar press
-- Sometimes a page reload may be required to render the cards, but I suspect this issue is related to Vercel
 
 ## Live
 [LIVE PREVIEW](https://toolbox-app-delta.vercel.app/)
