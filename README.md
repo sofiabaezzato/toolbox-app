@@ -16,31 +16,6 @@ ToolBox is an open-source Next.js full-stack application designed to serve as a 
 
 - **User Interaction:** Visit other users' profile
 
-## To-Do List
-Here's a list of features and improvements I'm working on:
-
-- **View Other Profiles:** Get inspired by exploring profiles of other users and discover their favorite tools. [DONE]
-
-- **Display cards in the feed in alphabetical order** [DONE]
-
-- **Add clear input button in search bar** [DONE]
-
-- **Tag suggestion in Form Input**
-
-- **Unique Tag Colors:** Assign distinct colors to tags to make tool categorization visually appealing and intuitive.
-
-- **Tag Duplication Prevention:** Implement a feature that prevents adding duplicate tags for a cleaner tagging system.
-
-- **Add dark mode**
-
-- **Add loading page**
-
-- **Create custom alert popup before deletion**
-
-- **Option to change username**
-
-- **Upvote or downvote a tool and order tools by # of votes**
-
 ## Changelog
 - **[Version 0.0.2] - [30/09/2023]:**
   - add multiple tags feature
@@ -58,6 +33,31 @@ Here's a list of features and improvements I'm working on:
 
 ## Live
 [LIVE PREVIEW](https://toolbox-app-delta.vercel.app/)
+
+## Getting Started
+
+Follow these steps to get started with ToolBox:
+
+### Installation
+
+1. Clone this repository to your local machine:
+   ```sh
+   git clone https://github.com/sofiabaezzato/toolbox-app.git
+2. Navigate to the project directory:
+    ```sh
+    cd toolbox-app
+3. Install the project dependencies:
+    ```sh
+    npm install
+    # or
+    yarn install
+### Usage
+1. Start the application locally:
+    ```sh
+      npm run dev
+      # or
+      yarn dev
+2. Open your web browser and visit http://localhost:3000 to access ToolBox.
 
 ## Contributing
 
