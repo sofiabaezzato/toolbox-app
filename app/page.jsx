@@ -1,4 +1,6 @@
 import Feed from "@components/Feed"
+import { Suspense } from "react"
+import Loading from "./loading"
 
 
 const Home = () => {
@@ -13,7 +15,9 @@ const Home = () => {
             ToolBox is an open-source database of the most useful tools on the internet
         </p>
 
-        <Feed />
+        <Suspense fallback={<Loading />}>
+          <Feed />
+        </Suspense>
     </section>
   )
 }
