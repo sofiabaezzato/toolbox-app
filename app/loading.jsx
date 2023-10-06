@@ -1,10 +1,13 @@
 import React from 'react'
+import { LeapFrog } from '@uiball/loaders'
 
 function Loading() {
   return (
-    <main>
-      <h1>Loading...</h1>
-    </main>
+    <LeapFrog
+    size={40}
+    speed={2.5}
+    color="black"
+    />
   )
 }
 

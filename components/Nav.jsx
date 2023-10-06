@@ -58,6 +58,7 @@ const Nav = () => {
                             width={37}
                             height={37}
                             className="rounded-full"
+                            priority
                             alt="profile"
                             />
                         </Link>
@@ -90,6 +91,7 @@ const Nav = () => {
                         height={37}
                         className="rounded-full"
                         alt="profile"
+                        priority
                         onClick={() => setToggleDropdown((prev) => !prev)}
                         />
 
