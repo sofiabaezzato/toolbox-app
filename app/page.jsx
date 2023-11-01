@@ -15,7 +15,7 @@ const Home = () => {
             ToolBox is an open-source database of the most useful tools on the internet
         </p>
 
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={'Loading from suspense...'}>
           <Feed />
         </Suspense>
     </section>

@@ -3,7 +3,6 @@ import Tool from "@models/tool"
 
 export const POST = async (request) => {
   const { userId, toolName, description, tag, url, price } = await request.json()
-  /* console.log("Received Data:", { userId, toolName, description, tag, url, price }); */
 
   try {
     await connectToDB()

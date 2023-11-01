@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 
 const MyProfile = () => {
   const router = useRouter()
-  const { data: session} = useSession()
+  const { data: session } = useSession()
   
   const [myPosts, setMyPosts] = useState([])
 
@@ -24,6 +24,10 @@ const MyProfile = () => {
       router.push('/')
     }
   }, [])
+
+  const handleSettings = () => {
+    router.push(`/profile/settings`)
+  }
 
   const handleEdit = (post) => {
     router.push(`/update-tool?id=${post._id}`)
@@ -54,6 +58,8 @@ const MyProfile = () => {
       data={myPosts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
+      handleSettings={handleSettings}
+      session={session}
     />
   )
 }
