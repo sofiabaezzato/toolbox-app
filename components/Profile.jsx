@@ -10,8 +10,11 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete, handleSettings, s
       </h1>
       <p className="desc text-left">{desc}</p>
       {session?.user.id && (
-        <button onClick={handleSettings}>
-          Settings
+        <button
+          onClick={handleSettings}
+          className="mt-5 px-5 py-1.5 text-xs bg-red-600 rounded-full text-white font-semibold"
+        >
+          Edit profile
         </button>
       )}
 
