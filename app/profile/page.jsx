@@ -10,6 +10,28 @@ const MyProfile = () => {
   const { data: session } = useSession()
   
   const [myPosts, setMyPosts] = useState([])
+  const [userDetails, setUserDetails] = useState({
+    username: '',
+    city: '',
+    website: '',
+    bio: '',
+  })
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      const response = await fetch(`/api/users/${session?.user.id}`)
+      const data = await response.json()
+
+      setUserDetails({
+        username: data.username,
+        city: data.city,
+        website: data.website,
+        bio: data.bio
+      })
+    }
+
+    if (session?.user.id) getUserDetails()
+  },[])
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -19,7 +41,7 @@ const MyProfile = () => {
       setMyPosts(data)
     }
 
-    if(session?.user.id) fetchPosts()
+    if (session?.user.id) fetchPosts()
     else {
       router.push('/')
     }
@@ -60,6 +82,7 @@ const MyProfile = () => {
       handleDelete={handleDelete}
       handleSettings={handleSettings}
       session={session}
+      userDetails={userDetails}
     />
   )
 }

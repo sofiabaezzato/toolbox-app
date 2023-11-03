@@ -159,13 +159,7 @@ const Settings = () => {
             {submitting ? 'Update...' : 'Update'}
           </button>
         </div>
-        
       </form>
-
-      
-      
-
-
     </section>
   )
 }
