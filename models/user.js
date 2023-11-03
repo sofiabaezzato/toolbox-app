@@ -14,6 +14,15 @@ const UserSchema = new Schema({
   },
   image: {
     type: String,
+  },
+  city: {
+    type: String,
+  },
+  website: {
+    type: String,
+  },
+  bio: {
+    type: String,
   }
 })
 
