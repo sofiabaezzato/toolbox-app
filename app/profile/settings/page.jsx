@@ -15,7 +15,13 @@ const Settings = () => {
     }
   })
 
-  const [newName, setNewName] = useState('')
+  const [userDetails, setUserDetails] = useState({
+    username: '',
+    city: '',
+    website: '',
+    bio: '',
+  })
+
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState()
   const userId = session?.user.id
@@ -25,7 +31,12 @@ const Settings = () => {
       const response = await fetch(`/api/users/${userId}`)
       const data = await response.json()
 
-      setNewName(data.username)
+      setUserDetails({
+        username: data.username,
+        city: data.city,
+        website: data.website,
+        bio: data.bio
+      })
     }
 
     if (userId) getUserDetails()
@@ -41,11 +52,14 @@ const Settings = () => {
       const response = await fetch(`/api/users/${userId}`, {
         method: "PATCH",
         body: JSON.stringify({
-          username: newName
+          username: userDetails.username,
+          city: userDetails.city,
+          website: userDetails.website,
+          bio: userDetails.bio
         }),
       })
 
-      if (!response.ok) throw new Error ('Invalid username: it should contain 4-20 characters and no spaces.')
+      if (!response.ok) throw new Error ('Error updating user details')
       else if (response.ok) router.push("/profile")
     } catch (error) {
       setError(error.message)
@@ -66,22 +80,73 @@ const Settings = () => {
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <label>
-        <span className="font-satoshi font-semibold text-base text-gray-700">
-          Username
-        </span>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Username
+          </span>
 
-        <input
-          type="text"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          placeholder="New username" required
-          className="form_input"
-        />
-        {error && (
-        <p
-          className="mt-2 text-xs text-red-700"
-        >{error}</p>
-        )}
+          <input
+            type="text"
+            value={userDetails.username}
+            onChange={(e) => setUserDetails({...userDetails, username: e.target.value})}
+            placeholder="New username" required
+            className="form_input"
+          />
+          {error && (
+          <p
+            className="mt-2 text-xs text-red-700"
+          >{error}</p>
+          )}
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            City
+          </span>
+
+          <input
+            type="text"
+            value={userDetails.city}
+            onChange={(e) => setUserDetails({...userDetails, city: e.target.value})}
+            placeholder="Add a location" 
+            className="form_input"
+          />
+          {error && (
+          <p
+            className="mt-2 text-xs text-red-700"
+          >{error}</p>
+          )}
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Website
+          </span>
+
+          <input
+            type="url"
+            value={userDetails.website}
+            onChange={(e) => setUserDetails({...userDetails, website: e.target.value})}
+            placeholder="Add a link"
+            className="form_input"
+          />
+          {error && (
+          <p
+            className="mt-2 text-xs text-red-700"
+          >{error}</p>
+          )}
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Bio
+          </span>
+
+          <textarea
+            value={userDetails.bio}
+            onChange={(e) => setUserDetails({...userDetails, bio: e.target.value})}
+            placeholder="Add your bio"
+            className="form_textarea"
+          />
         </label>
         
 
@@ -94,13 +159,7 @@ const Settings = () => {
             {submitting ? 'Update...' : 'Update'}
           </button>
         </div>
-        
       </form>
-
-      
-      
-
-
     </section>
   )
 }

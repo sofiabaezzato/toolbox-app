@@ -14,6 +14,18 @@ const UserSchema = new Schema({
   },
   image: {
     type: String,
+  },
+  city: {
+    type: String,
+    minLength: [2, 'Must be at least 2 characters.'],
+    maxLength: [20, 'Too long.']
+  },
+  website: {
+    type: String,
+  },
+  bio: {
+    type: String,
+    maxLength: [200]
   }
 })
 
