@@ -17,7 +17,7 @@ const Settings = () => {
 
   const [newName, setNewName] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState()
   const userId = session?.user.id
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Settings = () => {
   const handleUpdate = async (e) => {
     e.preventDefault()
     setSubmitting(true)
-    setError(false)
+    setError(null)
 
     if (!userId) return alert('User id not found')
     try {
@@ -45,11 +45,10 @@ const Settings = () => {
         }),
       })
 
-      if(response.ok) {
-        router.push("/profile")
-      }
+      if (!response.ok) throw new Error ('Invalid username: it should contain 4-20 characters and no spaces.')
+      else if (response.ok) router.push("/profile")
     } catch (error) {
-      setError(true)
+      setError(error.message)
       console.log(error)
     } finally {
       setSubmitting(false)
@@ -78,7 +77,13 @@ const Settings = () => {
           placeholder="New username" required
           className="form_input"
         />
+        {error && (
+        <p
+          className="mt-2 text-xs text-red-700"
+        >{error}</p>
+        )}
         </label>
+        
 
         <div className="flex-end mx-3 mb-5 gap-4">
           <button
@@ -89,9 +94,7 @@ const Settings = () => {
             {submitting ? 'Update...' : 'Update'}
           </button>
         </div>
-        {error && (
-        <h1>Error!</h1>
-      )}
+        
       </form>
 
       
