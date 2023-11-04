@@ -24,6 +24,14 @@ const ToolSchema = new Schema({
   price: {
     type: String,
     required: [true, 'Pricing is required'],
+  },
+  likeCount: {
+    type: Number,
+    default: 0
+  },
+  likes: {
+    type: [Schema.Types.ObjectId],
+    required: false
   }
 })
 

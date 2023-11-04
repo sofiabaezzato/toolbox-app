@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import ToolCard from './ToolCard'
+import { useSession } from 'next-auth/react'
 
 const ToolCardList = ({ data, handleTagClick }) => {
   return (
@@ -25,7 +26,6 @@ const Feed = () => {
   const [searchText, setSearchText] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-
   const [posts, setPosts] = useState([])
 
   const fetchPosts = async () => {
