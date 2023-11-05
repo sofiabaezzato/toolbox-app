@@ -31,15 +31,8 @@ export const PATCH = async (request, { params }) => {
     }, { new: true })
 
     console.log(existingUser)
-    /* existingUser.username = username
-    existingUser.city = city
-    existingUser.website = website
-    existingUser.bio = bio
-
-    await existingUser.save() */
 
     if(!existingUser) return new Response("User not found", { status: 404})
-
 
     return new Response(JSON.stringify(existingUser, { status: 200 }))
   } catch (error) {

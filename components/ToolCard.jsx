@@ -4,17 +4,44 @@ import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession()
   const pathName = usePathname()
   const router = useRouter()
+  const [liked, setLiked] = useState()
+  const [likeCount, setLikeCount] = useState(post.likeCount || 0)
 
   const handleProfileClick = () => {
     if (post.creator._id === session?.user.id) return router.push("/profile")
 
     router.push(`/profile/${post.creator._id}?name=${post.creator.username}`)
   }
+
+  const handleLike = async (e) => {
+    e.preventDefault()
+    if (!session?.user.id) return alert('You must signin!')
+    try {
+      const response = await fetch(`/api/tool/like/${post._id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ userId: session?.user.id }),
+      })
+      if(response.ok) {
+        if (liked == false) setLikeCount(likeCount + 1)
+        else if (likeCount > 0) setLikeCount(likeCount - 1)
+        setLiked(current => !current)
+      }
+      if (!response.ok) throw new Error ('Error, please try again.')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if (post.likes.includes(session?.user.id)) setLiked(true)
+    else setLiked(false)
+  }, [session?.user.id])
 
   return (
     <div className="tool_card">
@@ -65,20 +92,48 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           {post.description}
         </p>
 
-        <div className="flex-1 flex justify-start items-center gap-2 cursor-pointer"
-        onClick={handleProfileClick}
-        >
-          <Image
-            src={post.creator.image}
-            alt="user_image"
-            width={30}
-            height={30}
-            className="rounded-full object-contain"
-          />
-          <p className="font-satoshi text-gray-900 text-xs">
-            @{post.creator.username}
-          </p>
+        <div className="flex justify-between w-full items-center">
+          <div className="flex-1 flex justify-start items-center gap-2 cursor-pointer"
+          onClick={handleProfileClick}
+          >
+            <Image
+              src={post.creator.image}
+              alt="user_image"
+              width={30}
+              height={30}
+              className="rounded-full object-contain"
+            />
+            <p className="font-satoshi text-gray-900 text-xs">
+              @{post.creator.username}
+            </p>
           
+          </div>
+
+          <div className="flex gap-1 items-center">
+            <p className="font-satoshi text-gray-900 text-xs">
+              {likeCount || 0}
+            </p>
+            <button
+              onClick={handleLike}
+            >
+              {liked ? (
+                <Image
+                  src="/icons/star-solid.svg"
+                  width={18}
+                  height={18}
+                  alt="like icon"
+                />
+              ) : (
+                <Image
+                  src="/icons/star-regular.svg"
+                  width={18}
+                  height={18}
+                  alt="like icon"
+                />
+              )}
+              
+            </button>
+          </div>
         </div>
       </div>
 

@@ -16,6 +16,7 @@ const MyProfile = () => {
     website: '',
     bio: '',
   })
+  const [postType, setPostType] = useState('yourTools')
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -34,8 +35,9 @@ const MyProfile = () => {
   },[])
 
   useEffect(() => {
+    const apiUrl = postType === 'yourTools' ? `/api/users/${session?.user.id}/posts` : `/api/users/${session?.user.id}/favorites`
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`, {cache: 'no-store'})
+      const response = await fetch(apiUrl, {cache: 'no-store'})
       const data = await response.json()
 
       setMyPosts(data)
@@ -45,7 +47,7 @@ const MyProfile = () => {
     else {
       router.push('/')
     }
-  }, [])
+  }, [postType])
 
   const handleSettings = () => {
     router.push(`/profile/settings`)
@@ -73,6 +75,15 @@ const MyProfile = () => {
     }
   }
 
+  // refactor this code. These two functions are redundant
+  const handleTypeFavorites = () => {
+    setPostType('favorites')
+  }
+
+  const handleTypeYourTools = () => {
+    setPostType('yourTools')
+  }
+
   return (
     <Profile
       name="My"
@@ -83,6 +94,9 @@ const MyProfile = () => {
       handleSettings={handleSettings}
       session={session}
       userDetails={userDetails}
+      postType={postType}
+      handleTypeFavorites={handleTypeFavorites}
+      handleTypeYourTools={handleTypeYourTools}
     />
   )
 }
