@@ -32,7 +32,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         else if (likeCount > 0) setLikeCount(likeCount - 1)
         setLiked(current => !current)
       }
-      if (!response.ok) throw new Error ('Error adding a like')
+      if (!response.ok) throw new Error ('Error, please try again.')
     } catch (error) {
       console.log(error)
     }
@@ -109,7 +109,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           
           </div>
 
-          <div className="flex gap-1">
+          <div className="flex gap-1 items-center">
             <p className="font-satoshi text-gray-900 text-xs">
               {likeCount || 0}
             </p>
