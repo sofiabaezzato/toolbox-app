@@ -28,7 +28,8 @@ const Feed = () => {
   const [posts, setPosts] = useState([])
 
   const fetchPosts = async () => {
-    const response = await fetch('/api/tool', { cache: 'no-store' })
+    const { signal } = new AbortController()
+    const response = await fetch('/api/tool', { signal })
     const data = await response.json()
 
     setPosts(data)
