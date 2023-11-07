@@ -28,8 +28,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([])
 
   const fetchPosts = async () => {
-    const { signal } = new AbortController()
-    const response = await fetch('/api/tool', { signal })
+    const response = await fetch('/api/tool', { next: { revalidate: 0 } })
     const data = await response.json()
 
     setPosts(data)
@@ -115,5 +114,3 @@ const Feed = () => {
 }
 
 export default Feed
-
-export const fetchCache = 'force-no-store'
