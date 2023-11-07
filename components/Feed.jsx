@@ -115,3 +115,5 @@ const Feed = () => {
 }
 
 export default Feed
+
+export const fetchCache = 'force-no-store'

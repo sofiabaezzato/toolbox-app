@@ -41,3 +41,5 @@ export const PATCH = async (request, { params }) => {
     return new Response("Failed to update user details", { status: 500 })
   }
 }
+
+export const fetchCache = 'force-no-store'
