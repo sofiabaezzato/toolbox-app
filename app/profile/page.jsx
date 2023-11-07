@@ -12,6 +12,7 @@ const MyProfile = () => {
   const [myPosts, setMyPosts] = useState([])
   const [userDetails, setUserDetails] = useState({
     username: '',
+    image: '',
     city: '',
     website: '',
     bio: '',
@@ -25,6 +26,7 @@ const MyProfile = () => {
 
       setUserDetails({
         username: data.username,
+        image: data.image,
         city: data.city,
         website: data.website,
         bio: data.bio

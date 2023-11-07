@@ -1,6 +1,5 @@
 import ToolCard from './ToolCard'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 import InfoCard from './InfoCard'
 
 

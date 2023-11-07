@@ -12,6 +12,7 @@ const InfoCard = ({ userDetails, session, handleSettings }) => {
             width={12}
             height={12}
             alt="location icon"
+            className='w-[12px] h-[12px]'
           />
           <p className="font-satoshi text-sm text-gray-700 max-w-full font-semibold">
           {userDetails.city}

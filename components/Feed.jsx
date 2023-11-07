@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import ToolCard from './ToolCard'
-import { useSession } from 'next-auth/react'
 
 const ToolCardList = ({ data, handleTagClick }) => {
   return (
@@ -29,7 +28,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([])
 
   const fetchPosts = async () => {
-    const response = await fetch('/api/tool'/* , {cache: 'no-store'} */)
+    const response = await fetch('/api/tool')
     const data = await response.json()
 
     setPosts(data)
