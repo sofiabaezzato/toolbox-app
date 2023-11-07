@@ -18,19 +18,20 @@ export const GET = async (request, { params }) => {
 
 // PATCH (update)
 export const PATCH = async (request, { params }) => {
-  const { username, city, website, bio } = await request.json()
+  const { username, image, city, website, bio } = await request.json()
 
   try {
     await connectToDB()
 
     const existingUser = await User.findByIdAndUpdate(params.id, {
       username: username,
+      image: image,
       city: city,
       website: website,
       bio: bio
     }, { new: true })
 
-    console.log(existingUser)
+    /* console.log(existingUser) */
 
     if(!existingUser) return new Response("User not found", { status: 404})
 

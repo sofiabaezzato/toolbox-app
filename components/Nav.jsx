@@ -12,16 +12,35 @@ const Nav = () => {
 
     const [providers, setProviders ] = useState(null)
     const [toggleDropdown, setToggleDropdown ] = useState(false)
+    const [userImage, setUserImage] = useState('/images/default-profile.jpg')
 
     useEffect(() => {
         const setUpProviders = async () => {
             const response = await getProviders()
-
             setProviders(response)
         }
 
         setUpProviders()
     }, []) // [] means that useEffect will be run only once
+
+    useEffect(() => {
+        const getUserImage = async () => {
+            try {
+                const response = await fetch(`/api/users/${session.user.id}`)
+                const data = await response.json()
+
+                if (!response.ok) throw Error ('User image not found')
+
+                setUserImage(data.image)
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+
+        if (session?.user.id) {
+            getUserImage()
+        }
+    }, [session?.user.id])
 
     return (
         <nav className="flex-between w-full mb-16 pt-3">
@@ -54,7 +73,7 @@ const Nav = () => {
 
                         <Link href="/profile">
                             <Image
-                            src={session?.user.image}
+                            src={userImage}
                             width={37}
                             height={37}
                             className="rounded-full"
@@ -86,7 +105,7 @@ const Nav = () => {
                 {session?.user ? (
                     <div className="flex">
                         <Image
-                        src={session?.user.image}
+                        src={userImage}
                         width={37}
                         height={37}
                         className="rounded-full"

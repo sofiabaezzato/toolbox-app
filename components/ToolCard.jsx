@@ -101,7 +101,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               alt="user_image"
               width={30}
               height={30}
-              className="rounded-full object-contain"
+              className="rounded-full w-[30px] h-[30px] object-fill"
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}
@@ -122,6 +122,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                   width={18}
                   height={18}
                   alt="like icon"
+                  className="w-[18px] h-[18px]"
                 />
               ) : (
                 <Image
@@ -129,6 +130,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                   width={18}
                   height={18}
                   alt="like icon"
+                  className="w-[18px] h-[18px]"
                 />
               )}
               
