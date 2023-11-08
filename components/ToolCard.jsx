@@ -97,12 +97,12 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           onClick={handleProfileClick}
           >
             <Image
-              src={post.creator.image + '?new'}
+              src={post.creator.image}
               alt="user_image"
               width={30}
               height={30}
               className="rounded-full object-cover h-[30px]"
-              key={post.creator.id}
+              key={Date.now()}
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}
