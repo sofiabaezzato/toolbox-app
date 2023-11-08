@@ -8,7 +8,6 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'utfs.io'
     ],
-    minimumCacheTTL: 5,
   },
   webpack(config) {
     config.experiments = {

@@ -12,6 +12,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const router = useRouter()
   const [liked, setLiked] = useState()
   const [likeCount, setLikeCount] = useState(post.likeCount || 0)
+  const [userImage, setUserImage] = useState('/images/default-profile.jpg')
 
   const handleProfileClick = () => {
     if (post.creator._id === session?.user.id) return router.push("/profile")
@@ -21,7 +22,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
   const handleLike = async (e) => {
     e.preventDefault()
-    if (!session?.user.id) return alert('You must signin!')
+    if (!session?.user.id) return alert('You need to sign-in!')
     try {
       const response = await fetch(`/api/tool/like/${post._id}`, {
         method: "PATCH",
@@ -42,6 +43,10 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     if (post.likes.includes(session?.user.id)) setLiked(true)
     else setLiked(false)
   }, [session?.user.id])
+
+  useEffect(() => {
+    setUserImage(post.creator.image)
+  }, [])
 
   return (
     <div className="tool_card">
@@ -97,11 +102,11 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           onClick={handleProfileClick}
           >
             <Image
-              src={post.creator.image}
+              src={userImage}
               alt="user_image"
               width={30}
               height={30}
-              className="rounded-full w-[30px] h-[30px] object-fill"
+              className="rounded-full w-[30px] h-auto object-fill"
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}
