@@ -107,7 +107,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               alt="user_image"
               width={30}
               height={30}
-              className="rounded-full w-[30px] h-[30px] object-fill"
+              className="rounded-full w-[30px] h-[30px] object-cover"
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}
