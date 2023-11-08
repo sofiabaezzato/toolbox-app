@@ -88,7 +88,7 @@ const Settings = () => {
             src={userDetails?.image}
             width={100}
             height={100}
-            className="rounded-full w-[90px] h-[90px]"
+            className="rounded-full object-cover h-[100px]"
             alt="profile"
           />
           <UploadButton

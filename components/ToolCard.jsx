@@ -12,7 +12,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const router = useRouter()
   const [liked, setLiked] = useState()
   const [likeCount, setLikeCount] = useState(post.likeCount || 0)
-  const [userImage, setUserImage] = useState('/images/default-profile.jpg')
 
   const handleProfileClick = () => {
     if (post.creator._id === session?.user.id) return router.push("/profile")
@@ -43,11 +42,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     if (post.likes.includes(session?.user.id)) setLiked(true)
     else setLiked(false)
   }, [session?.user.id])
-
-  useEffect(() => {
-    const newImage = post.creator.image
-    setUserImage(newImage)
-  }, [post.creator.image])
 
   return (
     <div className="tool_card">
@@ -103,11 +97,11 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           onClick={handleProfileClick}
           >
             <Image
-              src={userImage}
+              src={post.creator.image}
               alt="user_image"
               width={30}
               height={30}
-              className="rounded-full w-[30px] h-[30px] object-cover"
+              className="rounded-full object-cover h-[30px]"
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}
