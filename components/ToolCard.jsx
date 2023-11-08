@@ -97,7 +97,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           onClick={handleProfileClick}
           >
             <Image
-              src={post.creator.image}
+              src={post.creator.image + '?new'}
               alt="user_image"
               width={30}
               height={30}
