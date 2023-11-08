@@ -76,7 +76,7 @@ const Nav = () => {
                             src={userImage}
                             width={37}
                             height={37}
-                            className="rounded-full w-[37px] h-[37px]"
+                            className="rounded-full object-cover h-[37px]"
                             priority
                             alt="profile"
                             />
@@ -108,7 +108,7 @@ const Nav = () => {
                         src={userImage}
                         width={37}
                         height={37}
-                        className="rounded-full w-[37px] h-[37px]"
+                        className="rounded-full object-cover h-[37px]"
                         alt="profile"
                         priority
                         onClick={() => setToggleDropdown((prev) => !prev)}
