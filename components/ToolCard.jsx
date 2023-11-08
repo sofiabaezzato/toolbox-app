@@ -45,8 +45,9 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   }, [session?.user.id])
 
   useEffect(() => {
-    setUserImage(post.creator.image)
-  }, [])
+    const newImage = post.creator.image
+    setUserImage(newImage)
+  }, [post.creator.image])
 
   return (
     <div className="tool_card">
@@ -106,7 +107,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               alt="user_image"
               width={30}
               height={30}
-              className="rounded-full w-[30px] h-auto object-fill"
+              className="rounded-full w-[30px] h-[30px] object-fill"
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}
