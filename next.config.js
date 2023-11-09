@@ -4,10 +4,17 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
-    domains: [
-      'lh3.googleusercontent.com',
-      'utfs.io'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      }
     ],
+    minimumCacheTTL: 5,
   },
   webpack(config) {
     config.experiments = {
