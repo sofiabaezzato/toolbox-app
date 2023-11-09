@@ -16,5 +16,6 @@ const Home = () => {
     </section>
   )
 }
+export const revalidate = 0
 
 export default Home
