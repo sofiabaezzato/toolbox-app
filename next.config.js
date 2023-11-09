@@ -14,7 +14,6 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
       }
     ],
-    minimumCacheTTL: 5,
   },
   webpack(config) {
     config.experiments = {

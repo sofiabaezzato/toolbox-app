@@ -28,7 +28,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([])
 
   const fetchPosts = async () => {
-    const response = await fetch('/api/tool', { next: { revalidate: 0 } })
+    const response = await fetch('/api/tool', {cache: 'no-store'})
     const data = await response.json()
 
     setPosts(data)
