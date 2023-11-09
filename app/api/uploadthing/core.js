@@ -19,7 +19,7 @@ exports.ourFileRouter = {
     }) */
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
-      console.log("Upload completed: ", metadata);
+      console.log("Upload completed: ", file.url);
     }),
 };
 

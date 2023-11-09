@@ -102,7 +102,7 @@ const Settings = () => {
             endpoint="imageUploader"
             onClientUploadComplete={(res) => {
               // Do something with the response
-              /* console.log("File: ", res[0].url); */
+              /* console.log("File: ", res[0]) */
               setUserDetails({...userDetails, image: res[0].url})
             }}
             onUploadError={(error) => {
