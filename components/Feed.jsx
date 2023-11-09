@@ -27,14 +27,14 @@ const Feed = () => {
   const [searchResults, setSearchResults] = useState([])
   const [posts, setPosts] = useState([])
 
-  const fetchPosts = async () => {
-    const response = await fetch('/api/tool', {cache: 'no-store'})
-    const data = await response.json()
-
-    setPosts(data)
-  }
-
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/tool', {cache: 'no-store'})
+      const data = await response.json()
+  
+      setPosts(data)
+    }
+    
     fetchPosts()
   }, [])
 
@@ -77,36 +77,36 @@ const Feed = () => {
     <section className='feed'>
       <form className="relative flex max-w-xl search_input flex-between min-[40px]:">
         <input
-        id='search'
-        type="text"
-        placeholder='Search a tool name or a tag'
-        value={searchText}
-        onChange={handleSearchChange}
-        className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
+          id='search'
+          type="text"
+          placeholder='Search a tool name or a tag'
+          value={searchText}
+          onChange={handleSearchChange}
+          className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
         />
         <button
-        className='self-end'
-        onClick={handleClearInput}
+          className='self-end'
+          onClick={handleClearInput}
         >
           <Image
-          src="icons/close.svg"
-          width={20}
-          height={20}
-          alt='clear-input'
-          className={searchText === '' ? "hidden" : "visible"}
+            src="icons/close.svg"
+            width={20}
+            height={20}
+            alt='clear-input'
+            className={searchText === '' ? "hidden" : "visible"}
           ></Image>
         </button>
       </form>
 
       {searchText ? (
         <ToolCardList
-        data={searchResults}
-        handleTagClick={handleTagClick}
+          data={searchResults}
+          handleTagClick={handleTagClick}
         />
       ) : 
         <ToolCardList
-        data={posts}
-        handleTagClick={handleTagClick}
+          data={posts}
+          handleTagClick={handleTagClick}
         />
       }
     </section>
