@@ -12,7 +12,7 @@ const ToolCardList = ({ data, handleTagClick }) => {
       .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
       .map((post) => (
         <ToolCard
-          key={crypto.randomUUID()}
+          key={post._id}
           post={post}
           handleTagClick={handleTagClick}
         />
