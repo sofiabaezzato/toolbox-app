@@ -21,22 +21,11 @@ const ToolCardList = ({ data, handleTagClick }) => {
   )
 }
 
-const Feed = () => {
+const Feed = ({ posts }) => {
   const [searchText, setSearchText] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch('/api/tool', {cache: 'no-store'})
-      const data = await response.json()
   
-      setPosts(data)
-    }
-    
-    fetchPosts()
-  }, [])
 
   const filterTools = (searchText) => {
     const regex = new RegExp(searchText, "i")

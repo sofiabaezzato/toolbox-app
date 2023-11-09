@@ -1,9 +1,23 @@
 'use client'
 
 import Feed from "@components/Feed"
+import { useState, useEffect } from "react"
 
 
 const Home = () => {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/tool', {cache: 'no-store'})
+      const data = await response.json()
+  
+      setPosts(data)
+    }
+    
+    fetchPosts()
+  }, [])
+
   return (
     <section className="w-full flex-center flex-col">
         <h1 className="head_text text-center">
@@ -14,7 +28,7 @@ const Home = () => {
         <p className="desc text-center">
             ToolBox is an open-source database of the most useful tools on the internet
         </p>
-        <Feed />
+        <Feed posts={posts}/>
     </section>
   )
 }
