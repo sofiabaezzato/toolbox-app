@@ -1,5 +1,6 @@
+'use client'
+
 import Feed from "@components/Feed"
-import { Suspense } from "react"
 
 
 const Home = () => {
@@ -13,10 +14,7 @@ const Home = () => {
         <p className="desc text-center">
             ToolBox is an open-source database of the most useful tools on the internet
         </p>
-
-        <Suspense fallback={'Loading from suspense...'}>
-          <Feed />
-        </Suspense>
+        <Feed />
     </section>
   )
 }
