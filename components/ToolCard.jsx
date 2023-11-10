@@ -13,6 +13,10 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [liked, setLiked] = useState()
   const [likeCount, setLikeCount] = useState(post.likeCount || 0)
 
+  useEffect(() => {
+    router.refresh()
+  },[])
+
   const handleProfileClick = () => {
     if (post.creator._id === session?.user.id) return router.push("/profile")
 
@@ -28,7 +32,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         body: JSON.stringify({ userId: session?.user.id }),
       })
       if(response.ok) {
-        if (liked == false) setLikeCount(likeCount + 1)
+        if (!liked) setLikeCount(likeCount + 1)
         else if (likeCount > 0) setLikeCount(likeCount - 1)
         setLiked(current => !current)
       }
