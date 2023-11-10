@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/tool')
+      const response = await fetch('/api/tool', { cache: 'no-store' })
       const data = await response.json()
   
       setPosts(data)
