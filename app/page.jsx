@@ -1,5 +1,7 @@
 import Feed from "@components/Feed"
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 const Home = () => {
   return (
@@ -16,6 +18,5 @@ const Home = () => {
     </section>
   )
 }
-export const revalidate = 0
 
 export default Home
