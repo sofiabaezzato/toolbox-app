@@ -1,41 +1,13 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import ToolCard from './ToolCard'
+import ToolCardList from './ToolCardList'
 
-const ToolCardList = ({ data, handleTagClick }) => {
-  return (
-    <div className="mt-10 tool_layout">
-      {data
-      .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
-      .map((post) => (
-        <ToolCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
-      ))}
-    </div>
-  )
-}
-
-const Feed = () => {
+const Feed = ({ posts }) => {
   const [searchText, setSearchText] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch('/api/tool', {cache: 'no-store'})
-      const data = await response.json()
-  
-      setPosts(data)
-    }
-    
-    fetchPosts()
-  }, [])
 
   const filterTools = (searchText) => {
     const regex = new RegExp(searchText, "i")
