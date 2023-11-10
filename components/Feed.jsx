@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import ToolCard from './ToolCard'
+import { useRouter } from 'next/navigation'
 
 const ToolCardList = ({ data, handleTagClick }) => {
   return (
@@ -25,8 +26,11 @@ const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
   const [posts, setPosts] = useState([])
+  
+  const router = useRouter()
 
   useEffect(() => {
+    router.refresh()
     const fetchPosts = async () => {
       const response = await fetch('/api/tool', {cache: 'no-store'})
       const data = await response.json()
