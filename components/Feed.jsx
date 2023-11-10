@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-
 import ToolCard from './ToolCard'
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 const ToolCardList = ({ data, handleTagClick }) => {
   return (
