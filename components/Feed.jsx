@@ -1,13 +1,17 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import ToolCardList from './ToolCardList'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 const Feed = ({ posts }) => {
-  const [searchText, setSearchText] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const searchText = searchParams.get('search') || ''
 
   const filterTools = (searchText) => {
     const regex = new RegExp(searchText, "i")
@@ -20,20 +24,27 @@ const Feed = ({ posts }) => {
     )
   }
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (searchText) => {
     clearTimeout(searchTimeout)
-    setSearchText(e.target.value)
 
     setSearchTimeout(
       setTimeout(() => {
-        const searchResult = filterTools(e.target.value)
+        router.replace(`?search=${searchText}`, {
+          scroll: false,
+          shallow: true
+        })
+
+        const searchResult = filterTools(searchText)
         setSearchResults(searchResult)
-      }, 500)
+      }, 300)
     )
   }
 
   const handleTagClick = (tagName) => {
-    setSearchText(tagName)
+    router.push(`?search=${tagName}`, {
+      scroll: false,
+      shallow: true
+    })
 
     const searchResult = filterTools(tagName)
     setSearchResults(searchResult)
@@ -41,7 +52,9 @@ const Feed = ({ posts }) => {
 
   const handleClearInput = (e) => {
     e.preventDefault()
-    setSearchText('')
+    router.push(`/`, {
+      scroll: false,
+    })
   }
 
   return (
@@ -51,9 +64,11 @@ const Feed = ({ posts }) => {
           id='search'
           type="text"
           placeholder='Search a tool name or a tag'
-          value={searchText}
-          onChange={handleSearchChange}
+          key={searchText.toString()}
+          defaultValue={searchText}
+          onChange={e => handleSearchChange(e.target.value)}
           className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
+          autoFocus
         />
         <button
           className='self-end'
@@ -74,12 +89,12 @@ const Feed = ({ posts }) => {
           data={searchResults}
           handleTagClick={handleTagClick}
         />
-      ) : 
+      ) : (
         <ToolCardList
           data={posts}
           handleTagClick={handleTagClick}
         />
-      }
+      )}
     </section>
   )
 }

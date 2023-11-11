@@ -29,7 +29,6 @@ const Home = () => {
         </p>
         <Feed
           posts={posts}
-          
         />
     </section>
   )

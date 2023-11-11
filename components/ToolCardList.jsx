@@ -1,3 +1,5 @@
+"use client"
+
 import ToolCard from './ToolCard'
 
 const ToolCardList = ({ data, handleTagClick }) => {
