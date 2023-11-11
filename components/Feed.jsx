@@ -5,13 +5,25 @@ import Image from 'next/image'
 import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-const Feed = ({ posts }) => {
+const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+  const [posts, setPosts] = useState([])
 
   const router = useRouter()
   const searchParams = useSearchParams()
   const searchText = searchParams.get('search') || ''
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/tool', { cache: 'no-store' })
+      const data = await response.json()
+  
+      setPosts(data)
+    }
+    
+    fetchPosts()
+  }, [])
 
   useEffect(() => {
     handleSearchChange(searchText)

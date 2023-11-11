@@ -28,10 +28,10 @@ const Nav = () => {
             try {
                 const response = await fetch(`/api/users/${session.user.id}`)
                 const data = await response.json()
-
+                const userImage = data.image
                 if (!response.ok) throw Error ('User image not found')
 
-                setUserImage(data.image)
+                setUserImage(userImage)
             } catch (error) {
                 console.log(error.message)
             }
@@ -40,7 +40,7 @@ const Nav = () => {
         if (session?.user.id) {
             getUserImage()
         }
-    }, [session?.user.id])
+    }, [session])
 
     return (
         <nav className="flex-between w-full mb-16 pt-3">

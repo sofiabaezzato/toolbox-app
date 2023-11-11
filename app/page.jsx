@@ -1,11 +1,6 @@
 import Feed from "@components/Feed"
 
-const Home = async () => {
-
-  // TODO
-  // This is a Server component. I need to fetch data directly from the db.
-  const response = await fetch('https://toolbox-app-delta.vercel.app' + '/api/tool', { cache: 'no-store' })
-  const data = await response.json()
+const Home = () => {
 
   return (
     <section className="w-full flex-center flex-col">
@@ -17,9 +12,7 @@ const Home = async () => {
         <p className="desc text-center">
             ToolBox is an open-source database of the most useful tools on the internet
         </p>
-        <Feed
-          posts={data}
-        />
+        <Feed />
     </section>
   )
 }
