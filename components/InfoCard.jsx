@@ -25,7 +25,7 @@ const InfoCard = ({ userDetails, session, handleSettings }) => {
       )}
       
       {userDetails?.website && (
-        <Link className="px-5 py-1.5 text-xs border border-gray-700 rounded-full text-gray-700 font-semibold flex flex-center gap-2 max-w-[120px]"
+        <Link className="px-5 py-2 text-sm border border-gray-700 rounded-full text-gray-700 font-semibold flex flex-center gap-2 w-[120px]"
           href={userDetails.website}
           target='_blank'
         >
