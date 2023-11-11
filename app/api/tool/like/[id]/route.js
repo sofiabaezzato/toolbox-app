@@ -10,6 +10,7 @@ export const PATCH = async (request, { params }) => {
     const existingTool = await Tool.findById(params.id);
 
     if (!existingTool) return new Response("Tool not found", { status: 404 });
+    
     if (existingTool.likes.includes(userId) && existingTool.likeCount > 0) {
       existingTool.likeCount += -1
       const newUserList = existingTool.likes.filter(id => id.toString() !== userId)
@@ -18,7 +19,7 @@ export const PATCH = async (request, { params }) => {
       existingTool.likeCount += 1;
       existingTool.likes.push(userId);
     }
-/*     console.log(existingTool) */
+    console.log(existingTool)
     await existingTool.save();
 
     return new Response(JSON.stringify(existingTool), { status: 200 });
