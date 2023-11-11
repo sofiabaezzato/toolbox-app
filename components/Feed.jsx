@@ -2,40 +2,46 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import ToolCard from './ToolCard'
+import ToolCardList from './ToolCardList'
+import { useSearchParams, useRouter } from 'next/navigation'
 
-const ToolCardList = ({ data, handleTagClick }) => {
-  return (
-    <div className="mt-10 tool_layout">
-      {data
-      .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
-      .map((post) => (
-        <ToolCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
-      ))}
-    </div>
-  )
-}
-
-const Feed = () => {
-  const [searchText, setSearchText] = useState('')
+const Feed = ({ posts }) => {
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-  const [posts, setPosts] = useState([])
+
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const searchText = searchParams.get('search') || ''
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch('/api/tool', {cache: 'no-store'})
-      const data = await response.json()
-  
-      setPosts(data)
-    }
-    
-    fetchPosts()
-  }, [])
+    handleSearchChange(searchText)
+  },[posts])
+
+  const handleSearchChange = (searchText) => {
+    clearTimeout(searchTimeout)
+
+    setSearchTimeout(
+      setTimeout(() => {
+        router.replace(`?search=${searchText}`, {
+          scroll: false,
+          shallow: true
+        })
+
+        const searchResult = filterTools(searchText)
+        setSearchResults(searchResult)
+      }, 300)
+    )
+  }
+
+  const handleTagClick = (tagName) => {
+    router.push(`?search=${tagName}`, {
+      scroll: false,
+      shallow: true
+    })
+
+    const searchResult = filterTools(tagName)
+    setSearchResults(searchResult)
+  }
 
   const filterTools = (searchText) => {
     const regex = new RegExp(searchText, "i")
@@ -48,28 +54,11 @@ const Feed = () => {
     )
   }
 
-  const handleSearchChange = (e) => {
-    clearTimeout(searchTimeout)
-    setSearchText(e.target.value)
-
-    setSearchTimeout(
-      setTimeout(() => {
-        const searchResult = filterTools(e.target.value)
-        setSearchResults(searchResult)
-      }, 500)
-    )
-  }
-
-  const handleTagClick = (tagName) => {
-    setSearchText(tagName)
-
-    const searchResult = filterTools(tagName)
-    setSearchResults(searchResult)
-  }
-
   const handleClearInput = (e) => {
     e.preventDefault()
-    setSearchText('')
+    router.push(`/`, {
+      scroll: false,
+    })
   }
 
   return (
@@ -79,9 +68,11 @@ const Feed = () => {
           id='search'
           type="text"
           placeholder='Search a tool name or a tag'
-          value={searchText}
-          onChange={handleSearchChange}
+          key={searchText.toString()}
+          defaultValue={searchText}
+          onChange={e => handleSearchChange(e.target.value)}
           className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
+          autoFocus
         />
         <button
           className='self-end'
@@ -102,12 +93,12 @@ const Feed = () => {
           data={searchResults}
           handleTagClick={handleTagClick}
         />
-      ) : 
+      ) : (
         <ToolCardList
           data={posts}
           handleTagClick={handleTagClick}
         />
-      }
+      )}
     </section>
   )
 }

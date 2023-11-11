@@ -10,8 +10,12 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession()
   const pathName = usePathname()
   const router = useRouter()
+
   const [liked, setLiked] = useState()
-  const [likeCount, setLikeCount] = useState(post.likeCount || 0)
+
+  // Currently, useOptimistic isn't functioning as expected, hence we're storing likeCount in a state.
+  // This practice introduces a double source of truth, which is not ideal.
+  const [optimisticLikeCount, setOptimisticLikeCount] = useState(post.likeCount || 0)
 
   const handleProfileClick = () => {
     if (post.creator._id === session?.user.id) return router.push("/profile")
@@ -21,26 +25,28 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
   const handleLike = async (e) => {
     e.preventDefault()
+
     if (!session?.user.id) return alert('You need to sign-in!')
+
+    if (liked && optimisticLikeCount > 0) setOptimisticLikeCount(optimisticLikeCount - 1)
+    else if (!liked) setOptimisticLikeCount(optimisticLikeCount + 1)
+
+    setLiked(current => !current)
+
     try {
       const response = await fetch(`/api/tool/like/${post._id}`, {
         method: "PATCH",
         body: JSON.stringify({ userId: session?.user.id }),
       })
-      if(response.ok) {
-        if (!liked) setLikeCount(likeCount + 1)
-        else if (likeCount > 0) setLikeCount(likeCount - 1)
-        setLiked(current => !current)
-      }
+
       if (!response.ok) throw new Error ('Error, please try again.')
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
   }
 
   useEffect(() => {
-    if (post.likes.includes(session?.user.id)) setLiked(true)
-    else setLiked(false)
+    {post.likes.includes(session?.user.id) ? setLiked(true) : setLiked(false)}
   }, [session?.user.id])
 
   return (
@@ -112,7 +118,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
           <div className="flex gap-1 items-center">
             <p className="font-satoshi text-gray-900 text-xs">
-              {likeCount || 0}
+              {optimisticLikeCount}
             </p>
             <button
               onClick={handleLike}
