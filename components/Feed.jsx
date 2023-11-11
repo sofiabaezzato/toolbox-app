@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -12,6 +12,10 @@ const Feed = ({ posts }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const searchText = searchParams.get('search') || ''
+
+  useEffect(() => {
+    handleSearchChange(searchText)
+  },[posts])
 
   const handleSearchChange = (searchText) => {
     clearTimeout(searchTimeout)
