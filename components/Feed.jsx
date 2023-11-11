@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -12,17 +12,6 @@ const Feed = ({ posts }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const searchText = searchParams.get('search') || ''
-
-  const filterTools = (searchText) => {
-    const regex = new RegExp(searchText, "i")
-
-    return posts.filter((item) =>
-      regex.test(item.creator.username) ||
-      regex.test(item.tag) ||
-      regex.test(item.toolName) ||
-      regex.test(item.description)
-    )
-  }
 
   const handleSearchChange = (searchText) => {
     clearTimeout(searchTimeout)
@@ -48,6 +37,17 @@ const Feed = ({ posts }) => {
 
     const searchResult = filterTools(tagName)
     setSearchResults(searchResult)
+  }
+
+  const filterTools = (searchText) => {
+    const regex = new RegExp(searchText, "i")
+
+    return posts.filter((item) =>
+      regex.test(item.creator.username) ||
+      regex.test(item.tag) ||
+      regex.test(item.toolName) ||
+      regex.test(item.description)
+    )
   }
 
   const handleClearInput = (e) => {
