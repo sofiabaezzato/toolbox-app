@@ -12,7 +12,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const router = useRouter()
 
   const [liked, setLiked] = useState()
-  /* const [likeCount, setLikeCount] = useState(post.likeCount || 0) */
 
   // Currently, useOptimistic isn't functioning as expected, hence we're storing likeCount in a state.
   // This practice introduces a double source of truth, which is not ideal.
@@ -32,8 +31,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     if (liked && optimisticLikeCount > 0) setOptimisticLikeCount(optimisticLikeCount - 1)
     else if (!liked) setOptimisticLikeCount(optimisticLikeCount + 1)
 
-/*     if (liked && likeCount > 0) setLikeCount(likeCount - 1)
-    else if (!liked) setLikeCount(likeCount + 1) */
     setLiked(current => !current)
 
     try {

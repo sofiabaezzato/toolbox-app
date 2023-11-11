@@ -19,7 +19,7 @@ export const PATCH = async (request, { params }) => {
       existingTool.likeCount += 1;
       existingTool.likes.push(userId);
     }
-    console.log(existingTool)
+    /* console.log(existingTool) */
     await existingTool.save();
 
     return new Response(JSON.stringify(existingTool), { status: 200 });
