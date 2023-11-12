@@ -27,7 +27,6 @@
     "tailwindcss": "latest"
   },
   "engines": {
-    "node": "18.18.2",
-    "npm": "9.8.1"
+    "node": "18.x"
   }
 }
