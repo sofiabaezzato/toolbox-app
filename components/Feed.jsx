@@ -14,6 +14,7 @@ const Feed = () => {
   const searchParams = useSearchParams()
   const searchText = searchParams.get('search') || ''
 
+  // fetch all tools
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('/api/tool', { cache: 'no-store' })
@@ -25,10 +26,13 @@ const Feed = () => {
     fetchPosts()
   }, [])
 
+  // re-render feed when a URL with a search query is pasted
   useEffect(() => {
     handleSearchChange(searchText)
   },[posts])
 
+  // save the search query in the URL, filter the tool list based on the query
+  // and save the results in the state
   const handleSearchChange = (searchText) => {
     clearTimeout(searchTimeout)
 

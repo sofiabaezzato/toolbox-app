@@ -46,7 +46,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         method: "PATCH",
         body: JSON.stringify({ userId: session?.user.id }),
       })
-      router.refresh()
 
       if (!response.ok) throw new Error ('Error, please try again.')
     } catch (error) {
