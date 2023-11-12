@@ -11,11 +11,15 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const pathName = usePathname()
   const router = useRouter()
 
+  // Currently, useOptimistic isn't functioning as expected, hence we're storing likeCount in a state.
+  // This practice introduces a double source of truth, which is not ideal (to be optimistic :)
+  const [optimisticLikeCount, setOptimisticLikeCount] = useState(post.likeCount || 0)
   const [liked, setLiked] = useState()
 
-  // Currently, useOptimistic isn't functioning as expected, hence we're storing likeCount in a state.
-  // This practice introduces a double source of truth, which is not ideal.
-  const [optimisticLikeCount, setOptimisticLikeCount] = useState(post.likeCount || 0)
+  // If user is logged in, update the like state to true or false to display the right icon
+  useEffect(() => {
+    {post.likes.includes(session?.user.id) ? setLiked(true) : setLiked(false)}
+  }, [])
 
   const handleProfileClick = () => {
     if (post.creator._id === session?.user.id) return router.push("/profile")
@@ -26,13 +30,17 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const handleLike = async (e) => {
     e.preventDefault()
 
+    // Handle user not logged in
     if (!session?.user.id) return alert('You need to sign-in!')
 
-    if (liked && optimisticLikeCount > 0) setOptimisticLikeCount(optimisticLikeCount - 1)
-    else if (!liked) setOptimisticLikeCount(optimisticLikeCount + 1)
+    // Add or remove like count in the state
+    if (liked && optimisticLikeCount > 0) setOptimisticLikeCount(prev => prev - 1)
+    else if (!liked) setOptimisticLikeCount(prev => prev + 1)
 
-    setLiked(current => !current)
+    // Update state of the like to true or false
+    setLiked(prev => !prev)
 
+    // Update like count and add or remove user id in the tools' database
     try {
       const response = await fetch(`/api/tool/like/${post._id}`, {
         method: "PATCH",
@@ -44,10 +52,6 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         console.log(error)
     }
   }
-
-  useEffect(() => {
-    {post.likes.includes(session?.user.id) ? setLiked(true) : setLiked(false)}
-  }, [session?.user.id])
 
   return (
     <div className="tool_card">
