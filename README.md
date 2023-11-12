@@ -48,9 +48,9 @@ Follow these steps to get started with ToolBox:
     cd toolbox-app
 3. Install the project dependencies:
     ```sh
-    npm install
+    npm ci
     # or
-    yarn install
+    yarn install --frozen-lockfile
 ### Usage
 1. Start the application locally:
     ```sh
