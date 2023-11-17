@@ -15,9 +15,11 @@ export const PATCH = async (request, { params }) => {
       existingTool.likeCount += -1
       const newUserList = existingTool.likes.filter(id => id.toString() !== userId)
       existingTool.likes = newUserList
+
     } else {
       existingTool.likeCount += 1;
       existingTool.likes.push(userId);
+
     }
     /* console.log(existingTool) */
     await existingTool.save();
