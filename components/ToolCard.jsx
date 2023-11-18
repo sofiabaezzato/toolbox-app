@@ -18,7 +18,10 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
   // If user is logged in, update the like state to true or false to display the right icon
   useEffect(() => {
-    {post.likes.includes(session?.user.id) ? setLiked(true) : setLiked(false)}
+    if (session?.user.id) {
+      {post.likes.includes(session.user.id) ? setLiked(true) : setLiked(false)}
+    }
+
   }, [])
 
   const handleProfileClick = () => {
@@ -46,7 +49,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         method: "PATCH",
         body: JSON.stringify({ userId: session?.user.id }),
       })
-
+      console.log(response)
       if (!response.ok) throw new Error ('Error, please try again.')
     } catch (error) {
         console.log(error)

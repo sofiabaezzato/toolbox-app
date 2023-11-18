@@ -21,9 +21,9 @@ export const PATCH = async (request, { params }) => {
       existingTool.likes.push(userId);
 
     }
-    /* console.log(existingTool) */
+    
     await existingTool.save();
-
+    console.log(existingTool)
     return new Response(JSON.stringify(existingTool), { status: 200 });
   } catch (error) {
     console.log(error.message);
