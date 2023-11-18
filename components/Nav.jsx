@@ -23,24 +23,25 @@ const Nav = () => {
         setUpProviders()
     }, []) // [] means that useEffect will be run only once
 
-    useEffect(() => {
-        const getUserImage = async () => {
-            try {
-                const response = await fetch(`/api/users/${session.user.id}`)
-                const data = await response.json()
-                const userImage = data.image
-                if (!response.ok) throw Error ('User image not found')
+    const getUserImage = async () => {
+        try {
+            const response = await fetch(`/api/users/${session.user.id}`)
+            const data = await response.json()
+            const userImage = data.image
+            if (!response.ok) throw Error ('User image not found')
 
-                setUserImage(userImage)
-            } catch (error) {
-                console.log(error.message)
-            }
+            setUserImage(userImage)
+        } catch (error) {
+            console.log(error.message)
         }
+    }
 
-        if (session?.user.id) {
-            getUserImage()
-        }
-    }, [session])
+    if (session?.user.id) {
+        getUserImage()
+    }
+/*     useEffect(() => {
+        
+    }, []) */
 
     return (
         <nav className="flex-between w-full mb-16 pt-3">

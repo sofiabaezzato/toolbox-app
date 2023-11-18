@@ -108,11 +108,13 @@ const Feed = () => {
         <ToolCardList
           data={searchResults}
           handleTagClick={handleTagClick}
+          setPosts={setPosts}
         />
       ) : (
         <ToolCardList
           data={posts}
           handleTagClick={handleTagClick}
+          setPosts={setPosts}
         />
       )}
     </section>

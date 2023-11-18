@@ -2,7 +2,7 @@
 
 import ToolCard from './ToolCard'
 
-const ToolCardList = ({ data, handleTagClick }) => {
+const ToolCardList = ({ data, setPosts, handleTagClick }) => {
   return (
     <div className="mt-10 tool_layout">
       {data
@@ -12,6 +12,7 @@ const ToolCardList = ({ data, handleTagClick }) => {
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
+          setPosts={setPosts}
         />
       ))}
     </div>
