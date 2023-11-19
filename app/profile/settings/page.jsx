@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { UploadButton } from "@utils/uploadthings"
+import Nav from "@components/Nav"
 
 const Settings = () => {
   const router = useRouter()
@@ -64,7 +65,9 @@ const Settings = () => {
       })
 
       if (!response.ok) throw new Error ('Error updating user details')
-      else if (response.ok) router.push("/profile")
+      else if (response.ok) {
+        router.push("/profile")
+      }
     } catch (error) {
       setError(error.message)
       console.log(error)
