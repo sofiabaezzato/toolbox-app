@@ -57,7 +57,7 @@ const Nav = () => {
 
             {/* Desktop Navigation */}
             <div className="sm:flex hidden">
-                {session?.user ? (
+                {status === "authenticated" ? (
                     <div className="flex gap-3 md:gap-5">
                         <Link href="/add-tool" className="black_btn">
                             Add Tool
@@ -102,7 +102,7 @@ const Nav = () => {
             
             {/* Mobile Navigation */}
             <div className="sm:hidden flex relative">
-                {session?.user ? (
+                {status === "authenticated" ? (
                     <div className="flex">
                         <Image
                         src={userImage}
