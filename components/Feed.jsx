@@ -26,17 +26,6 @@ const Feed = () => {
     fetchPosts()
   }, [])
 
-  const updatePosts = () => {
-    const fetchPosts = async () => {
-      const response = await fetch('/api/tool', { cache: 'no-store' })
-      const data = await response.json()
-  
-      setPosts(data)
-    }
-    
-    fetchPosts()
-  }
-
   // re-render feed when a URL with a search query is pasted
   useEffect(() => {
     handleSearchChange(searchText)
@@ -119,13 +108,11 @@ const Feed = () => {
         <ToolCardList
           data={searchResults}
           handleTagClick={handleTagClick}
-          updatePosts={updatePosts}
         />
       ) : (
         <ToolCardList
           data={posts}
           handleTagClick={handleTagClick}
-          updatePosts={updatePosts}
         />
       )}
     </section>

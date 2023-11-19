@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-const ToolCard = ({ post, updatePosts, handleTagClick, handleEdit, handleDelete }) => {
+const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession()
   const pathName = usePathname()
   const router = useRouter()
@@ -50,8 +50,6 @@ const ToolCard = ({ post, updatePosts, handleTagClick, handleEdit, handleDelete 
       if (!response.ok) throw new Error ('Error, please try again.')
     } catch (error) {
       console.log(error)
-    } finally {
-      updatePosts()
     }
   }
 
