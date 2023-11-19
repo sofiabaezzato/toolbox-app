@@ -8,40 +8,39 @@ import { useRouter } from 'next/navigation'
 
 const Nav = () => {
     const router = useRouter()
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
 
     const [providers, setProviders ] = useState(null)
     const [toggleDropdown, setToggleDropdown ] = useState(false)
     const [userImage, setUserImage] = useState('/images/default-profile.jpg')
 
     useEffect(() => {
-        const setUpProviders = async () => {
-            const response = await getProviders()
-            setProviders(response)
-        }
+      const setUpProviders = async () => {
+        const response = await getProviders()
+        setProviders(response)
+      }
 
-        setUpProviders()
-    }, []) // [] means that useEffect will be run only once
+      setUpProviders()
+    }, [])
 
-    const getUserImage = async () => {
+    useEffect(() => {
+      const getUserImage = async () => {
         try {
             const response = await fetch(`/api/users/${session.user.id}`)
             const data = await response.json()
-            const userImage = data.image
+            const newUserImage = data.image
             if (!response.ok) throw Error ('User image not found')
 
-            setUserImage(userImage)
+            setUserImage(newUserImage)
         } catch (error) {
             console.log(error.message)
         }
-    }
-
-    if (session?.user.id) {
+      }
+      
+      if (status === "authenticated") {
         getUserImage()
-    }
-/*     useEffect(() => {
-        
-    }, []) */
+      }
+    }, [session])
 
     return (
         <nav className="flex-between w-full mb-16 pt-3">
