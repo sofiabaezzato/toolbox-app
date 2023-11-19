@@ -13,3 +13,5 @@ export const GET = async (request) => {
     return new Response("Failed to fetch all tools", { status: 500} )
   }
 }
+
+export const dynamic = "force-dynamic"
