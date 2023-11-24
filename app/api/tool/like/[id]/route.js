@@ -1,8 +1,8 @@
 import { connectToDB } from "@utils/database";
 import Tool from "@models/tool";
 
-// PATCH (like)
-export const PATCH = async (request, { params }) => {
+// PUT (like)
+export const PUT = async (request, { params }) => {
   try {
     await connectToDB();
     const { userId } = await request.json()
@@ -23,7 +23,6 @@ export const PATCH = async (request, { params }) => {
     }
     
     await existingTool.save();
-    console.log(existingTool)
     return new Response(JSON.stringify(existingTool), { status: 200 });
   } catch (error) {
     console.log(error.message);

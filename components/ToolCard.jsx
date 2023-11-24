@@ -7,18 +7,16 @@ import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const pathName = usePathname()
   const router = useRouter()
 
-  // Currently, useOptimistic isn't functioning as expected, hence we're storing likeCount in a state.
-  // This practice introduces a double source of truth, which is not ideal (to be optimistic :)
   const [likeCount, setLikeCount] = useState(post.likeCount || 0)
   const [liked, setLiked] = useState()
 
   // If user is logged in, update the like state to true or false to display the right icon
   useEffect(() => {
-    if (session?.user.id) {
+    if (status == 'authenticated') {
     {post.likes.includes(session.user.id) ? setLiked(true) : setLiked(false)}
     }
   }, [])
@@ -33,21 +31,22 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     e.preventDefault()
 
     // Handle user not logged in
-    if (!session?.user.id) return alert('You need to sign-in!')
-
-    if (liked && likeCount > 0) setLikeCount(prev => prev - 1)
-    else if (!liked) setLikeCount(prev => prev + 1)
-    // Update state of the like to true or false
-    setLiked(prev => !prev)
+    if (status !== 'authenticated') return alert('You need to sign-in!')
 
     // Update like count and add or remove user id in the tools' database
     try {
       const response = await fetch(`/api/tool/like/${post._id}`, {
-        method: "PATCH",
+        method: "PUT",
         body: JSON.stringify({ userId: session?.user.id }),
       })
       
       if (!response.ok) throw new Error ('Error, please try again.')
+
+      else {
+        const data = await response.json()
+        setLikeCount(data.likeCount)
+        setLiked(prev => !prev)
+      }
     } catch (error) {
       console.log(error)
     }
