@@ -17,8 +17,8 @@ export const GET = async (request, { params }) => {
   }
 }
 
-// PATCH (update)
-export const PATCH = async (request, { params }) => {
+// PUT (update)
+export const PUT = async (request, { params }) => {
   const { toolName, description, url, tag, price } = await request.json()
 
   try {

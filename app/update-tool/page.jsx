@@ -43,7 +43,7 @@ const EditTool = () => {
     if(!toolId) return alert('Tool id not found')
     try {
       const response = await fetch(`/api/tool/${toolId}`, {
-        method: "PATCH",
+        method: "PUT",
         body: JSON.stringify({
           toolName: post.toolName,
           description: post.description,

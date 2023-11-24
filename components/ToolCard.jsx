@@ -43,7 +43,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       if (!response.ok) throw new Error ('Error, please try again.')
 
       else {
-        const data = await response.json()
+        const data = await response.json() 
         setLikeCount(data.likeCount)
         setLiked(prev => !prev)
       }

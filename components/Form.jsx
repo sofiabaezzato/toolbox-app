@@ -107,7 +107,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             type="url"
             value={post.url}
             onChange={(e) => setPost({...post, url: e.target.value})}
-            placeholder="https://www.toolbox.io" required
+            placeholder="https://www.toolbox.io (Required)" required
             className="form_input"
           />
         </label>
