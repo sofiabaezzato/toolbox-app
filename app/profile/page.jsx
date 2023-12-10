@@ -77,15 +77,6 @@ const MyProfile = () => {
     }
   }
 
-  // refactor this code. These two functions are redundant
-  const handleTypeFavorites = () => {
-    setPostType('favorites')
-  }
-
-  const handleTypeYourTools = () => {
-    setPostType('yourTools')
-  }
-
   return (
     <Profile
       name="My"
@@ -95,10 +86,9 @@ const MyProfile = () => {
       handleDelete={handleDelete}
       handleSettings={handleSettings}
       session={session}
-      userDetails={userDetails}
       postType={postType}
-      handleTypeFavorites={handleTypeFavorites}
-      handleTypeYourTools={handleTypeYourTools}
+      setPostType={setPostType}
+      userDetails={userDetails}
     />
   )
 }
