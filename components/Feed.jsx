@@ -4,27 +4,18 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
+import useFetchTools from '@utils/hooks/useFetchTools'
 
 const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-  const [posts, setPosts] = useState([])
 
   const router = useRouter()
   const searchParams = useSearchParams()
   const searchText = searchParams.get('search') || ''
 
   // fetch all tools
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch('/api/tool', { cache: 'no-store' })
-      const data = await response.json()
-
-      setPosts(data)
-    }
-    
-    fetchPosts()
-  }, [])
+  const { posts, isLoading, error } = useFetchTools('/api/tool')
 
   // re-render feed when a URL with a search query is pasted
   useEffect(() => {
@@ -105,17 +96,33 @@ const Feed = () => {
         </button>
       </form>
 
-      {searchText ? (
-        <ToolCardList
-          data={searchResults}
-          handleTagClick={handleTagClick}
-        />
-      ) : (
-        <ToolCardList
-          data={posts}
-          handleTagClick={handleTagClick}
-        />
-      )}
+      {isLoading ? 
+        <div className='pt-28 flex flex-col gap-4 justify-center items-center'>
+          <p className='desc'>
+            Loading Tools...
+          </p>
+          <div className='h-5 w-5 animate-spin rounded-full border-b-2 border-gray-700'></div>
+        </div>
+        : searchText ? (
+          <ToolCardList
+            data={searchResults}
+            handleTagClick={handleTagClick}
+          />
+        ) : (
+          <ToolCardList
+            data={posts}
+            handleTagClick={handleTagClick}
+          />
+        )
+      }
+
+      {error ? 
+          <p className='desc'>
+            Cannot load tools. Please, reload the page and try again.
+          </p>
+          : null
+      }
+      
     </section>
   )
 }

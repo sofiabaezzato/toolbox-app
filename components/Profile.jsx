@@ -3,7 +3,7 @@ import React from 'react'
 import InfoCard from './InfoCard'
 
 
-const Profile = ({ name, desc, data, handleEdit, handleDelete, handleSettings, session, postType, userDetails, handleTypeFavorites, handleTypeYourTools }) => {
+const Profile = ({ name, desc, data, handleEdit, handleDelete, handleSettings, session, postType, setPostType, userDetails }) => {
 
   return (
     <section className="w-full">
@@ -20,13 +20,13 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete, handleSettings, s
       {session?.user.id && (
         <div className="mt-10 pl-5 flex gap-4">
           <button
-            onClick={handleTypeYourTools}
+            onClick={() => setPostType('yourTools')}
             className={postType === 'yourTools' ? 'text-red-600 font-semibold border-b-2 border-red-600' : 'text-gray-700 hover:text-gray-500'}
           >
             {data.length > 1 ? 'Your Tools' : 'Your tool'}
           </button>
           <button
-            onClick={handleTypeFavorites}
+            onClick={() => setPostType('favorites')}
             className={postType === 'favorites' ? 'text-red-600 font-semibold border-b-2 border-red-600' : 'text-gray-700 hover:text-gray-500'}
           >
             Favorites
