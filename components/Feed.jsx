@@ -89,6 +89,7 @@ const Feed = () => {
           onChange={e => handleSearchChange(e.target.value)}
           className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
           autoFocus
+          data-cy="search"
         />
         <button
           className='self-end'
