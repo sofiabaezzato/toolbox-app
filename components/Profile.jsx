@@ -1,9 +1,10 @@
 import ToolCard from './ToolCard'
 import React from 'react'
 import InfoCard from './InfoCard'
+import Loading from './Loading'
 
 
-const Profile = ({ name, desc, data, handleEdit, handleDelete, handleSettings, session, postType, setPostType, userDetails }) => {
+const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, session, postType, setPostType, userDetails }) => {
 
   return (
     <section className="w-full">
@@ -40,19 +41,20 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete, handleSettings, s
         >Nothing to show here yet! Start starring your favorite tools.</p>
       )}
 
-      <div className="tool_layout">
-        {data.length > 0 && data
-        .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
-        .map((post) => (
-          <ToolCard
-            key={post._id}
-            post={post}
-            handleEdit={() => handleEdit && handleEdit(post)}
-            handleDelete={() => handleDelete && handleDelete(post)}
-            postType={postType}
-          />
-        ))}
-      </div>
+      {isLoading ? <Loading /> : (
+        <div className="tool_layout">
+          {data.length > 0 && data
+          .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
+          .map((post) => (
+            <ToolCard
+              key={post._id}
+              post={post}
+              handleDelete={() => handleDelete && handleDelete(post)}
+              postType={postType}
+            />
+          ))}
+        </div>
+      )}
     </section>
   )
 }

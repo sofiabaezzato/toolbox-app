@@ -5,6 +5,7 @@ import Image from 'next/image'
 import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
 import useFetchTools from '@utils/hooks/useFetchTools'
+import Loading from './Loading'
 
 const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
@@ -15,7 +16,7 @@ const Feed = () => {
   const searchText = searchParams.get('search') || ''
 
   // fetch all tools
-  const { posts, isLoading, error } = useFetchTools('/api/tool')
+  const { data: posts, isLoading, error } = useFetchTools('/api/tool')
 
   // re-render feed when a URL with a search query is pasted
   useEffect(() => {
@@ -96,13 +97,7 @@ const Feed = () => {
         </button>
       </form>
 
-      {isLoading ? 
-        <div className='pt-28 flex flex-col gap-4 justify-center items-center'>
-          <p className='desc'>
-            Loading Tools...
-          </p>
-          <div className='h-5 w-5 animate-spin rounded-full border-b-2 border-gray-700'></div>
-        </div>
+      {isLoading ? <Loading />
         : searchText ? (
           <ToolCardList
             data={searchResults}
@@ -117,7 +112,7 @@ const Feed = () => {
       }
 
       {error ? 
-          <p className='desc'>
+          <p className='desc mb-28 text-center'>
             Cannot load tools. Please, reload the page and try again.
           </p>
           : null

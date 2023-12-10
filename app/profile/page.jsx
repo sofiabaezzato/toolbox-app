@@ -38,6 +38,7 @@ const MyProfile = () => {
 
   useEffect(() => {
     const apiUrl = postType === 'yourTools' ? `/api/users/${session?.user.id}/posts` : `/api/users/${session?.user.id}/favorites`
+
     const fetchPosts = async () => {
       const response = await fetch(apiUrl, {cache: 'no-store'})
       const data = await response.json()
@@ -55,9 +56,9 @@ const MyProfile = () => {
     router.push(`/profile/settings`)
   }
 
-  const handleEdit = (post) => {
+  /* const handleEdit = (post) => {
     router.push(`/update-tool?id=${post._id}`)
-  }
+  } */
 
   const handleDelete = async (post) => {
     const hasConfirmid = confirm("Are you sure you want to delete this tool?")
@@ -82,7 +83,7 @@ const MyProfile = () => {
       name="My"
       desc="Welcome to your personal toolbox"
       data={myPosts}
-      handleEdit={handleEdit}
+      // handleEdit={handleEdit}
       handleDelete={handleDelete}
       handleSettings={handleSettings}
       session={session}
