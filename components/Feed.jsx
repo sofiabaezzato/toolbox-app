@@ -4,27 +4,19 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
+import useFetchTools from '@utils/hooks/useFetchTools'
+import Loading from './Loading'
 
 const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
-  const [posts, setPosts] = useState([])
 
   const router = useRouter()
   const searchParams = useSearchParams()
   const searchText = searchParams.get('search') || ''
 
   // fetch all tools
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch('/api/tool', { cache: 'no-store' })
-      const data = await response.json()
-
-      setPosts(data)
-    }
-    
-    fetchPosts()
-  }, [])
+  const { data: posts, isLoading, error } = useFetchTools('/api/tool')
 
   // re-render feed when a URL with a search query is pasted
   useEffect(() => {
@@ -89,6 +81,7 @@ const Feed = () => {
           onChange={e => handleSearchChange(e.target.value)}
           className='w-5/6 font-medium focus:border-black focus:outline-none focus:ring-0'
           autoFocus
+          data-cy="search"
         />
         <button
           className='self-end'
@@ -104,17 +97,27 @@ const Feed = () => {
         </button>
       </form>
 
-      {searchText ? (
-        <ToolCardList
-          data={searchResults}
-          handleTagClick={handleTagClick}
-        />
-      ) : (
-        <ToolCardList
-          data={posts}
-          handleTagClick={handleTagClick}
-        />
-      )}
+      {isLoading ? <Loading />
+        : searchText ? (
+          <ToolCardList
+            data={searchResults}
+            handleTagClick={handleTagClick}
+          />
+        ) : (
+          <ToolCardList
+            data={posts}
+            handleTagClick={handleTagClick}
+          />
+        )
+      }
+
+      {error ? 
+          <p className='desc mb-28 text-center'>
+            Cannot load tools. Please, reload the page and try again.
+          </p>
+          : null
+      }
+      
     </section>
   )
 }

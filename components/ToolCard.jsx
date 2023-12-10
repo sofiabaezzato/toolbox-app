@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+const ToolCard = ({ post, handleTagClick, handleDelete }) => {
   const { data: session, status } = useSession()
   const pathName = usePathname()
   const router = useRouter()
@@ -152,7 +152,7 @@ const ToolCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       {session?.user.id === post.creator._id && pathName === '/profile' && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
           <p className="font-inter text-sm text-gray-700 cursor-pointer"
-          onClick={handleEdit}
+          onClick={() => router.push(`/update-tool?id=${post._id}`)}
           >
             Edit
           </p>
