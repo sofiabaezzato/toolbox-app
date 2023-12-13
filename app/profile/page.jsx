@@ -4,6 +4,7 @@ import Profile from "@components/Profile"
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import ConfirmationModal from "@components/ConfirmationModal"
 
 const MyProfile = () => {
   const router = useRouter()
@@ -18,6 +19,8 @@ const MyProfile = () => {
     bio: '',
   })
   const [postType, setPostType] = useState('yourTools')
+  const [confirmed, setConfirmed] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -61,8 +64,9 @@ const MyProfile = () => {
   } */
 
   const handleDelete = async (post) => {
-    const hasConfirmid = confirm("Are you sure you want to delete this tool?")
+    setIsModalOpen(true)
 
+    /* const hasConfirmid = confirm("Are you sure you want to delete this tool?")
     if(hasConfirmid) {
       try {
         await fetch(`api/tool/${post._id.toString()}`, {
@@ -75,11 +79,16 @@ const MyProfile = () => {
       } catch (error) {
         console.log(error.message)
       } 
-    }
+    } */
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
   }
 
   return (
-    <Profile
+    <>
+      <Profile
       name="My"
       desc="Welcome to your personal toolbox"
       data={myPosts}
@@ -90,7 +99,14 @@ const MyProfile = () => {
       postType={postType}
       setPostType={setPostType}
       userDetails={userDetails}
-    />
+      />
+      {confirmed ?
+        <ConfirmationModal 
+          isModalOpen={isModalOpen}
+          handleModalClose={handleModalClose}
+        /> : null}
+    </>
+    
   )
 }
 
