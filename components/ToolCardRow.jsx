@@ -59,7 +59,9 @@ const ToolCardRow = ({ post, handleTagClick, isOpen, setIsOpen }) => {
 
   return (
     <div className="tool_card_row">
-      {isOpen === post._id ? 
+      {isOpen === post._id ?
+
+        // expanded row
         <div className=" flex flex-col items-start">
           <div className="flex justify-between items-center w-full mb-1 gap-2" >
             <h3 className="font-satoshi text-xl font-semibold text-gray-900 truncate">
@@ -89,73 +91,73 @@ const ToolCardRow = ({ post, handleTagClick, isOpen, setIsOpen }) => {
               {post.price.charAt(0).toUpperCase() + post.price.slice(1)}</p>
           </div>
   
-        <ul className="flex gap-1 flex-wrap my-1">
-          {post.tag.map((tag, index) => (
-            <li
-              key={index}
-              onClick={() => handleTagClick && handleTagClick(post.tag[index])}
-              className="badge cursor-pointer"
-              >
-              <span
-              className="text-xs"
-              >{tag}</span>
-            </li>
-          ))}
-        </ul>
+          <ul className="flex gap-1 flex-wrap my-1">
+            {post.tag.map((tag, index) => (
+              <li
+                key={index}
+                onClick={() => handleTagClick && handleTagClick(post.tag[index])}
+                className="badge cursor-pointer"
+                >
+                <span
+                className="text-xs"
+                >{tag}</span>
+              </li>
+            ))}
+          </ul>
   
-        <p className="mt-2 mb-6 font-satoshi text-sm text-gray-700 max-w-full">
-          {post.description}
-        </p>
+          <p className="mt-2 mb-6 font-satoshi text-sm text-gray-700 max-w-full">
+            {post.description}
+          </p>
   
-        <div className="flex justify-between w-full items-center">
-          <div className="flex-1 flex justify-start items-center gap-2 cursor-pointer"
-          onClick={handleProfileClick}
-          >
-            <Image
-              src={post.creator.image}
-              alt="user_image"
-              width={30}
-              height={30}
-              className="rounded-full object-cover h-[30px]"
-              key={crypto.randomUUID()}
-            />
-            <p className="font-satoshi text-gray-900 text-xs">
-              @{post.creator.username}
-            </p>
-          
-          </div>
-  
-          <div className="flex gap-1 items-center">
-            <p className="font-satoshi text-gray-900 text-xs">
-              {likeCount}
-            </p>
-            <button
-              onClick={handleLike}
+          <div className="flex justify-between w-full items-center">
+            <div className="flex-1 flex justify-start items-center gap-2 cursor-pointer"
+            onClick={handleProfileClick}
             >
-              {liked ? (
-                <Image
-                  src="/icons/star-solid.svg"
-                  width={18}
-                  height={18}
-                  alt="like icon"
-                  className="w-[18px] h-[18px]"
-                />
-              ) : (
-                <Image
-                  src="/icons/star-regular.svg"
-                  width={18}
-                  height={18}
-                  alt="like icon"
-                  className="w-[18px] h-[18px]"
-                />
-              )}
-              
-            </button>
+              <Image
+                src={post.creator.image}
+                alt="user_image"
+                width={30}
+                height={30}
+                className="rounded-full object-cover h-[30px]"
+                key={crypto.randomUUID()}
+              />
+              <p className="font-satoshi text-gray-900 text-xs">
+                @{post.creator.username}
+              </p>
+            
+            </div>
+    
+            <div className="flex gap-1 items-center">
+              <p className="font-satoshi text-gray-900 text-xs">
+                {likeCount}
+              </p>
+              <button
+                onClick={handleLike}
+              >
+                {liked ? (
+                  <Image
+                    src="/icons/star-solid.svg"
+                    width={18}
+                    height={18}
+                    alt="like icon"
+                    className="w-[18px] h-[18px]"
+                  />
+                ) : (
+                  <Image
+                    src="/icons/star-regular.svg"
+                    width={18}
+                    height={18}
+                    alt="like icon"
+                    className="w-[18px] h-[18px]"
+                  />
+                )}
+                
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-        
         :
+        // collapsed row
         <div className=" flex flex-col items-start">
           <div className="flex items-center w-full mb-1 gap-2 justify-between" >
             <div className="flex gap-4 items-center">
@@ -193,7 +195,7 @@ const ToolCardRow = ({ post, handleTagClick, isOpen, setIsOpen }) => {
 
           
 
-          <p className="mt-2 mb-2 font-satoshi text-sm text-gray-700 max-w-full truncate">
+          <p className="mb-2 font-satoshi text-sm text-gray-700 max-w-full truncate">
             {post.description}
           </p>
         </div>
