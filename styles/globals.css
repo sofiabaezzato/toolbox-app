@@ -87,6 +87,10 @@
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter font-medium flex items-center justify-center;
 }
 
+.black_btn_big {
+  @apply rounded-full border border-black bg-black py-3 px-7 text-white transition-all hover:bg-white hover:text-black text-center text-lg font-inter font-medium flex items-center justify-center;
+}
+
 .outline_btn {
   @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter font-medium flex items-center justify-center;
 }
@@ -168,7 +172,7 @@
 }
 
 .tool_card_row {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter  /* md:w-[300px] lg:w-[360px] */ w-full h-fit /* justify-stretch */ overflow-hidden;
+  @apply flex-1 break-inside-avoid first:rounded-t-lg last:rounded-b-lg border bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter  /* md:w-[300px] lg:w-[360px] */ w-full h-fit /* justify-stretch */ overflow-hidden;
 }
 
 .flex-center {
