@@ -118,7 +118,11 @@
 }
 
 .tool_layout {
-  @apply space-y-6 py-8 md:columns-2 /* gap-6 */  xl:columns-3 max-w-full;
+  @apply space-y-6 py-6 md:columns-2 /* gap-6 */  xl:columns-3 max-w-full;
+}
+
+.tool_list_layout {
+  @apply flex flex-col py-6 max-w-3xl mx-auto;
 }
 
 /* Feed Component */
@@ -155,6 +159,10 @@
 /* ToolCard Component */
 .tool_card {
   @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter /* md:w-[300px] lg:w-[360px] */ w-full h-fit /* justify-stretch */ overflow-hidden;
+}
+
+.tool_card_row {
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter  /* md:w-[300px] lg:w-[360px] */ w-full h-fit /* justify-stretch */ overflow-hidden;
 }
 
 .flex-center {

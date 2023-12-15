@@ -10,6 +10,7 @@ import Loading from './Loading'
 const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+  const [view, setView] = useState('list')
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -69,9 +70,19 @@ const Feed = () => {
     })
   }
 
+  const viewPreference = (view) => {
+    localStorage.setItem("viewPreference", view)
+    setView(view)
+  }
+
+  useEffect(() => {
+    const savedView = localStorage.getItem("viewPreference")
+    if (savedView) setView(savedView)
+  })
+
   return (
     <section className='feed'>
-      <form className="relative flex max-w-xl search_input flex-between min-[40px]:">
+      <form className="relative flex max-w-xl search_input flex-between min-w-[40px]">
         <input
           id='search'
           type="text"
@@ -97,27 +108,46 @@ const Feed = () => {
         </button>
       </form>
 
-      {isLoading ? <Loading />
-        : searchText ? (
-          <ToolCardList
-            data={searchResults}
-            handleTagClick={handleTagClick}
-          />
-        ) : (
-          <ToolCardList
-            data={posts}
-            handleTagClick={handleTagClick}
-          />
-        )
-      }
+      <div className='mt-16 w-full'>
+        <div className='flex gap-4 px-[1.5rem] sm:px-8 py-2 justify-center'>
+          <button
+          className={view === 'list' ? 'text-red-600 font-semibold border-b-2 border-red-600' : 'text-gray-700 hover:text-gray-500'}
+            onClick={() => viewPreference('list')}
+          >
+            List
+          </button>
+          <button
+            className={view === 'grid' ? 'text-red-600 font-semibold border-b-2 border-red-600' : 'text-gray-700 hover:text-gray-500'}
+            onClick={() => viewPreference('grid')}
+          >
+            Grid
+          </button>
+        </div>
 
-      {error ? 
-          <p className='desc mb-28 text-center'>
-            Cannot load tools. Please, reload the page and try again.
-          </p>
-          : null
-      }
-      
+        {isLoading ? <Loading />
+          : searchText ? (
+            <ToolCardList
+              data={searchResults}
+              handleTagClick={handleTagClick}
+              view={view}
+            />
+          ) : (
+            <ToolCardList
+              data={posts}
+              handleTagClick={handleTagClick}
+              view={view}
+            />
+          )
+        }
+
+        {error ? 
+            <p className='desc mb-28 text-center'>
+              Cannot load tools. Please, reload the page and try again.
+            </p>
+            : null
+        }
+      </div>
+
     </section>
   )
 }
