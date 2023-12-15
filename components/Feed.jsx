@@ -141,10 +141,12 @@ const Feed = () => {
         }
 
         {error ? 
-            <p className='desc mb-28 text-center'>
+          <div className='pt-28 flex flex-col gap-4 justify-center items-center'>
+            <p className='desc'>
               Cannot load tools. Please, reload the page and try again.
             </p>
-            : null
+          </div>
+          : null
         }
       </div>
 
