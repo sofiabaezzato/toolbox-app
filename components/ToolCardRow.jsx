@@ -58,11 +58,11 @@ const ToolCardRow = ({ post, handleTagClick, isOpen, setIsOpen }) => {
   }
 
   return (
-    <div className="tool_card_row">
+    <div className="tool_card_row shadow-sm">
       {isOpen === post._id ?
 
         // expanded row
-        <div className=" flex flex-col items-start">
+        <div className="flex flex-col items-start">
           <div className="flex justify-between items-center w-full mb-1 gap-2" >
             <h3 className="font-satoshi text-xl font-semibold text-gray-900 truncate">
               {post.toolName}
@@ -193,13 +193,10 @@ const ToolCardRow = ({ post, handleTagClick, isOpen, setIsOpen }) => {
 
           </div>
 
-          
-
           <p className="mb-2 font-satoshi text-sm text-gray-700 max-w-full truncate">
             {post.description}
           </p>
         </div>
-        
     }
   </div>
   )
