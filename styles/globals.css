@@ -64,7 +64,6 @@
   /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7082",endColorstr="#c0e9ff",GradientType=1); */
   position: absolute;
   content: "";
-  width: 100%;
   height: 100%;
   filter: blur(120px) saturate(150%);
   top: 80px;
@@ -81,6 +80,14 @@
 
 .app {
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+.red_btn {
+  @apply rounded-full border border-red-600 bg-red-600 py-1.5 px-5 text-white transition-all text-center text-sm font-inter font-medium flex items-center justify-center;
+}
+
+.red_active_btn {
+  @apply rounded-full border border-red-600 bg-transparent py-1.5 px-5 text-red-600 transition-all hover:bg-white hover:text-red-600 text-center text-sm font-inter font-medium flex items-center justify-center;
 }
 
 .black_btn {

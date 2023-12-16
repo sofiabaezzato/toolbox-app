@@ -12,7 +12,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang='en'>
-        <body>
+        <body className='overflow-x-hidden'>
             <Provider>
                 <div className="main">
                     <div className="gradient" />
