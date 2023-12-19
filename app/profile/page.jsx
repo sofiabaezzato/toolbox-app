@@ -85,7 +85,6 @@ const MyProfile = () => {
         name="My"
         desc="Welcome to your personal toolbox"
         data={myPosts}
-        // handleEdit={handleEdit}
         handleDelete={handleDelete}
         handleSettings={handleSettings}
         session={session}
