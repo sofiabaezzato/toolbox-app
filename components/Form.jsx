@@ -44,6 +44,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onChange={(e) => setPost({...post, toolName: e.target.value})}
             placeholder="Write your tool name here..." required
             className="form_input"
+            id="toolname-input"
           />
         </label>
 
@@ -57,6 +58,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onChange={(e) => setPost({...post, description: e.target.value})}
             placeholder="Add a brief description of the tool" required
             className="form_textarea"
+            id="tool-description-input"
           />
         </label>
 
@@ -92,6 +94,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
               
               placeholder="team-work, no-code, AI, productivity..."
               className="form_input"
+              id="tag-input"
             />
             <em
             className="font-satoshi text-sm text-gray-500 pl-3">
@@ -109,6 +112,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onChange={(e) => setPost({...post, url: e.target.value})}
             placeholder="https://www.toolbox.io (Required)" required
             className="form_input"
+            id="url-input"
           />
         </label>
 
@@ -121,6 +125,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             value={post.price}
             onChange={(e) => setPost({...post, price: e.target.value})}
             className="form_select"
+            id="pricing-select"
           >
             <option value="free">Free</option>
             <option value="pay">Pay</option>  
@@ -139,6 +144,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             type="submit"
             disabled={submitting}
             className="px-5 py-1.5 text-sm bg-red-600 rounded-full text-white font-semibold"
+            aria-label="submitgit "
           >
             {submitting ? `${type}...` : type}
           </button>
