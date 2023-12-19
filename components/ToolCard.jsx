@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-const ToolCard = ({ post, handleTagClick, handleDelete }) => {
+const ToolCard = ({ post, handleTagClick, setIsModalOpen, postDeleted }) => {
   const { data: session, status } = useSession()
   const pathName = usePathname()
   const router = useRouter()
@@ -157,7 +157,10 @@ const ToolCard = ({ post, handleTagClick, handleDelete }) => {
             Edit
           </p>
           <p className="font-inter text-sm text-red-600 cursor-pointer"
-          onClick={handleDelete}
+            onClick={() => {
+              postDeleted.current = post
+              setIsModalOpen(true)
+            }}
           >
             Delete
           </p>
