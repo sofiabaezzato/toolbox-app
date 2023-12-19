@@ -45,7 +45,7 @@
   z-index: 3;
   width: 100%;
   max-width: 640px;
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
       at 27% 37%,
       hsla(215, 98%, 61%, 1) 0px,
       transparent 0%
@@ -55,14 +55,19 @@
     radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
     radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
     radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%); */
+
+  background: rgb(255,112,130);
+  background: -moz-linear-gradient(340deg, rgba(255,112,130,0.5) 0%, rgba(192,233,255,1) 100%);
+  background: -webkit-linear-gradient(340deg, rgba(255,112,130,0.5) 0%, rgba(192,233,255,1) 100%);
+  background: linear-gradient(340deg, rgba(255,112,130,0.5) 0%, rgba(192,233,255,1) 100%);
+  /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7082",endColorstr="#c0e9ff",GradientType=1); */
   position: absolute;
   content: "";
-  width: 100%;
   height: 100%;
-  filter: blur(100px) saturate(150%);
+  filter: blur(120px) saturate(150%);
   top: 80px;
-  opacity: 0.15;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 640px) {
@@ -77,8 +82,20 @@
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
+.red_btn {
+  @apply rounded-full border border-red-600 bg-red-600 py-1.5 px-5 text-white transition-all text-center text-sm font-inter font-medium flex items-center justify-center;
+}
+
+.red_active_btn {
+  @apply rounded-full border border-red-600 bg-transparent py-1.5 px-5 text-red-600 transition-all hover:bg-white hover:text-red-600 text-center text-sm font-inter font-medium flex items-center justify-center;
+}
+
 .black_btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter font-medium flex items-center justify-center;
+}
+
+.black_btn_big {
+  @apply rounded-full border border-black bg-black py-3 px-7 text-white transition-all hover:bg-white hover:text-black text-center text-lg font-inter font-medium flex items-center justify-center;
 }
 
 .outline_btn {
@@ -118,7 +135,11 @@
 }
 
 .tool_layout {
-  @apply space-y-6 py-8 md:columns-2 /* gap-6 */  xl:columns-3 max-w-full;
+  @apply space-y-6 py-6 md:columns-2 /* gap-6 */  xl:columns-3 max-w-full;
+}
+
+.tool_list_layout {
+  @apply flex flex-col py-6 max-w-3xl mx-auto;
 }
 
 /* Feed Component */
@@ -155,6 +176,10 @@
 /* ToolCard Component */
 .tool_card {
   @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter /* md:w-[300px] lg:w-[360px] */ w-full h-fit /* justify-stretch */ overflow-hidden;
+}
+
+.tool_card_row {
+  @apply flex-1 break-inside-avoid first:rounded-t-lg last:rounded-b-lg border bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter  /* md:w-[300px] lg:w-[360px] */ w-full h-fit /* justify-stretch */ overflow-hidden;
 }
 
 .flex-center {
