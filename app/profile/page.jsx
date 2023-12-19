@@ -2,7 +2,7 @@
 
 import Profile from "@components/Profile"
 import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import ConfirmationModal from "@components/ConfirmationModal"
 
@@ -19,8 +19,9 @@ const MyProfile = () => {
     bio: '',
   })
   const [postType, setPostType] = useState('yourTools')
-  const [confirmed, setConfirmed] = useState(false)
+ 
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const postDeleted = useRef(null)
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -59,51 +60,46 @@ const MyProfile = () => {
     router.push(`/profile/settings`)
   }
 
-  /* const handleEdit = (post) => {
-    router.push(`/update-tool?id=${post._id}`)
-  } */
+  const handleDelete = async () => {
+    const post = postDeleted.current
+    try {
+      await fetch(`api/tool/${post._id.toString()}`, {
+        method: 'DELETE'
+      })
 
-  const handleDelete = async (post) => {
-    setIsModalOpen(true)
+      const filteredPosts = myPosts.filter((item) => item._id !== post._id)
 
-    /* const hasConfirmid = confirm("Are you sure you want to delete this tool?")
-    if(hasConfirmid) {
-      try {
-        await fetch(`api/tool/${post._id.toString()}`, {
-          method: 'DELETE'
-        })
-
-        const filteredPosts = myPosts.filter((item) => item._id !== post._id)
-
-        setMyPosts(filteredPosts)
-      } catch (error) {
-        console.log(error.message)
-      } 
-    } */
+      setMyPosts(filteredPosts)
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+      postDeleted.current = null
+      setIsModalOpen(false)
+    }
   }
 
-  const handleModalClose = () => {
-    setIsModalOpen(false)
-  }
 
   return (
     <>
       <Profile
-      name="My"
-      desc="Welcome to your personal toolbox"
-      data={myPosts}
-      // handleEdit={handleEdit}
-      handleDelete={handleDelete}
-      handleSettings={handleSettings}
-      session={session}
-      postType={postType}
-      setPostType={setPostType}
-      userDetails={userDetails}
+        name="My"
+        desc="Welcome to your personal toolbox"
+        data={myPosts}
+        // handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        handleSettings={handleSettings}
+        session={session}
+        postType={postType}
+        setPostType={setPostType}
+        userDetails={userDetails}
+        setIsModalOpen={setIsModalOpen}
+        postDeleted={postDeleted}
       />
-      {confirmed ?
+      {isModalOpen ?
         <ConfirmationModal 
           isModalOpen={isModalOpen}
-          handleModalClose={handleModalClose}
+          handleModalClose={() => setIsModalOpen(false)}
+          handleDelete={handleDelete}
         /> : null}
     </>
     

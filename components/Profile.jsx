@@ -4,7 +4,7 @@ import InfoCard from './InfoCard'
 import Loading from './Loading'
 
 
-const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, session, postType, setPostType, userDetails }) => {
+const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, session, postType, setPostType, userDetails, setIsModalOpen, postDeleted }) => {
 
   return (
     <section className="w-full">
@@ -49,8 +49,10 @@ const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, se
             <ToolCard
               key={post._id}
               post={post}
-              handleDelete={() => handleDelete && handleDelete(post)}
+              handleDelete={() => handleDelete(post)}
               postType={postType}
+              setIsModalOpen={setIsModalOpen}
+              postDeleted={postDeleted}
             />
           ))}
         </div>
