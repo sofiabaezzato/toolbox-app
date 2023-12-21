@@ -17,9 +17,9 @@ const ConfirmationModal = ({ isModalOpen, handleModalClose, handleDelete}) => {
 
   // disable scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflowY = 'hidden'
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflowY = 'unset'
     }
   }, [isModalOpen])
 
@@ -36,6 +36,7 @@ const ConfirmationModal = ({ isModalOpen, handleModalClose, handleDelete}) => {
 
         <div className="flex gap-5 text-gray-600 mt-4 justify-between hover:text-gray-400">
           <button 
+            className='red_active_btn hover:border-red-400 hover:text-red-400'
             onClick={handleModalClose}
             aria-label='Go back'
           >
