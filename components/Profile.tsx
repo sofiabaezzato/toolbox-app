@@ -2,9 +2,41 @@ import ToolCard from './ToolCard'
 import React from 'react'
 import InfoCard from './InfoCard'
 import Loading from './Loading'
+import { Session } from 'next-auth'
 
+type ProfileProps = {
+  name: string
+  desc: string
+  data: any[]
+  isLoading?: boolean
+  handleSettings: () => void
+  session: Session
+  postType: string
+  setPostType: React.Dispatch<React.SetStateAction<string>>
+  userDetails: {
+    username: string;
+    image: string;
+    city: string;
+    website: string;
+    bio: string;
+  }
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  postDeleted: React.MutableRefObject<any>
+}
 
-const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, session, postType, setPostType, userDetails, setIsModalOpen, postDeleted }) => {
+const Profile = ({
+  name,
+  desc,
+  data,
+  isLoading,
+  handleSettings,
+  session,
+  postType,
+  setPostType,
+  userDetails,
+  setIsModalOpen,
+  postDeleted
+} : ProfileProps ) => {
 
   return (
     <section className="w-full">
@@ -35,13 +67,17 @@ const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, se
         </div>
       )}
       
+      {/* If user has no favorite tools yet, display a message */}
       {session?.user.id && postType === 'favorites' && data.length === 0 && (
         <p
           className='text-left pl-5 mt-10 text-gray-700 text-sm'
         >Nothing to show here yet! Start starring your favorite tools.</p>
       )}
 
-      {isLoading ? <Loading /> : (
+      {/* If tools are loading display a loading message */}
+      {isLoading ? <Loading />
+      : (
+        /* Else display tool cards */
         <div className="tool_layout">
           {data.length > 0 && data
           .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
@@ -49,8 +85,6 @@ const Profile = ({ name, desc, data, isLoading, handleDelete, handleSettings, se
             <ToolCard
               key={post._id}
               post={post}
-              handleDelete={() => handleDelete(post)}
-              postType={postType}
               setIsModalOpen={setIsModalOpen}
               postDeleted={postDeleted}
             />

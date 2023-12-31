@@ -77,6 +77,7 @@ const Nav = () => {
                             className="rounded-full object-cover h-[37px]"
                             priority
                             alt="profile"
+                            data-cy="profile"
                             />
                         </Link>
                     </div>
@@ -89,6 +90,7 @@ const Nav = () => {
                                     key={provider.name}
                                     onClick={() => signIn(provider.id, { callbackUrl: 'https://toolbox-app-delta.vercel.app/'})}
                                     className="black_btn"
+                                    data-cy="signin-btn"
                                 >
                                     Sign In
                                 </button>
@@ -108,6 +110,7 @@ const Nav = () => {
                         height={37}
                         className="rounded-full object-cover h-[37px]"
                         alt="profile"
+                        data-cy="profile"
                         priority
                         onClick={() => setToggleDropdown((prev) => !prev)}
                         />
@@ -152,6 +155,7 @@ const Nav = () => {
                                     key={provider.name}
                                     onClick={() => signIn(provider.id, { callbackUrl: 'https://toolbox-app-delta.vercel.app/'})}
                                     className="black_btn"
+                                    data-cy="signin-btn"
                                 >
                                     Sign In
                                 </button>

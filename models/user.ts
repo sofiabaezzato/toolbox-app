@@ -8,8 +8,6 @@ const UserSchema = new Schema({
   },
   username: {
     type: String,
-    unique: [true, 'User already exists!'],
-    required: [true, 'Username is required!'],
     minLength: 1,
     maxLength: 30,
   },

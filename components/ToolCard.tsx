@@ -1,18 +1,51 @@
 "use client"
 
+import { ObjectId } from "mongodb"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-const ToolCard = ({ post, handleTagClick, setIsModalOpen, postDeleted }) => {
+type Creator = {
+  _id: ObjectId
+  email: string
+  username: string
+  image: string
+  city: string
+  website: string
+  bio: string
+}
+
+type ToolCardProps = {
+  post: {
+    _id: ObjectId
+    creator: Creator
+    toolName: string
+    description: string
+    tag: string[]
+    url: string
+    price: string
+    likeCount: number
+    likes: ObjectId[]
+  }
+  handleTagClick?: (tagName: any) => void
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  postDeleted: React.MutableRefObject<any>
+}
+
+const ToolCard = ({
+  post, 
+  handleTagClick,
+  setIsModalOpen,
+  postDeleted
+} : ToolCardProps ) => {
   const { data: session, status } = useSession()
   const pathName = usePathname()
   const router = useRouter()
 
   const [likeCount, setLikeCount] = useState(post.likeCount || 0)
-  const [liked, setLiked] = useState()
+  const [liked, setLiked] = useState(false)
 
   // If user is logged in, update the like state to true or false to display the right icon
   useEffect(() => {
@@ -27,7 +60,9 @@ const ToolCard = ({ post, handleTagClick, setIsModalOpen, postDeleted }) => {
     router.push(`/profile/${post.creator._id}?name=${post.creator.username}`)
   }
 
-  const handleLike = async (e) => {
+  const handleLike = async (
+    e : React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
     e.preventDefault()
 
     // Handle user not logged in
@@ -84,7 +119,7 @@ const ToolCard = ({ post, handleTagClick, setIsModalOpen, postDeleted }) => {
         </div>
 
         <ul className="flex gap-1 flex-wrap my-1">
-          {post.tag.map((tag, index) => (
+          {post.tag.map((tag, index: number) => (
             <li
               key={index}
               onClick={() => handleTagClick && handleTagClick(post.tag[index])}
