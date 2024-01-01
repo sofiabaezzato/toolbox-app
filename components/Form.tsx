@@ -107,7 +107,6 @@ const Form = ({
             </ul>
             <input
               type="text"
-              /* onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)} */
               onChange={(e) => e.target.value.slice(-1) === " " || e.target.value.slice(-1) === "," ? addTags(e) : null}
               placeholder="team-work, no-code, AI, productivity..."
               className="form_input"

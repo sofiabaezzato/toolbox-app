@@ -7,12 +7,12 @@ import { useState } from 'react'
 
 type ToolCardListProps = {
   data: [] | Post[]
-  handleTagClick: (tagName: any) => void
+  handleTagClick: (tagName: string) => void
   view: "list" | "grid"
 }
 
 const ToolCardList = ({ data, handleTagClick, view } : ToolCardListProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(null)
 
   return (
     <div className={view === 'grid' ? "tool_layout" : "tool_list_layout"}>

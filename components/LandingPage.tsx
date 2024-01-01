@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { signIn, getProviders } from 'next-auth/react'
+import { signIn, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react'
+import { BuiltInProviderType } from 'next-auth/providers'
 
 const LandingPage = () => {
-  const [providers, setProviders ] = useState(null)
-  const [viewImage, setViewImage] = useState('grid')
+  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>>(null)
+  const [viewImage, setViewImage] = useState<'grid' | 'list'>('grid')
 
   useEffect(() => {
     const setUpProviders = async () => {

@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb"
 
 export type Post = {
   _id?: ObjectId
-  creator?: Creator
+  creator?: User
   toolName: string
   description: string
   tag: string[]
@@ -12,10 +12,10 @@ export type Post = {
   likes?: ObjectId[]
 }
 
-type Creator = {
-  _id: ObjectId
-  email: string
-  username: string
+export type User = {
+  _id?: ObjectId
+  email?: string
+  username?: string
   image?: string
   city?: string
   website?: string

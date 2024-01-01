@@ -1,18 +1,31 @@
 "use client"
 
+import { Post } from "@utils/types"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-const ToolCardRow = ({ post, handleTagClick, isOpen, setIsOpen }) => {
+type ToolCardRowProps = {
+  post: Post
+  handleTagClick: (tagName: string) => void
+  isOpen: Post["_id"]
+  setIsOpen: React.Dispatch<React.SetStateAction<Post["_id"]>>
+}
+
+const ToolCardRow = ({
+  post,
+  handleTagClick,
+  isOpen,
+  setIsOpen
+  } : ToolCardRowProps) => {
+    
   const { data: session, status } = useSession()
-  const pathName = usePathname()
   const router = useRouter()
 
   const [likeCount, setLikeCount] = useState(post.likeCount || 0)
-  const [liked, setLiked] = useState()
+  const [liked, setLiked] = useState(false)
 
 
   // If user is logged in, update the like state to true or false to display the right icon
