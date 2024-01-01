@@ -3,38 +3,32 @@ import React from 'react'
 import InfoCard from './InfoCard'
 import Loading from './Loading'
 import { Session } from 'next-auth'
-import { Post } from '@utils/types'
+import { Post, User } from '@utils/types'
 
 type ProfileProps = {
   name: string
   desc: string
-  data: any[]
+  data: Post[]
+  userDetails: User
   isLoading?: boolean
-  handleSettings: () => void
-  session: Session
-  postType: string
-  setPostType: React.Dispatch<React.SetStateAction<string>>
-  userDetails: {
-    username: string;
-    image: string;
-    city: string;
-    website: string;
-    bio: string;
-  }
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-  postDeleted: React.MutableRefObject<Post>
+  handleSettings?: () => void
+  session?: Session
+  postType?: string
+  setPostType?: React.Dispatch<React.SetStateAction<string>>
+  setIsModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
+  postDeleted?: React.MutableRefObject<Post>
 }
 
 const Profile = ({
   name,
   desc,
   data,
+  userDetails,
   isLoading,
   handleSettings,
   session,
   postType,
   setPostType,
-  userDetails,
   setIsModalOpen,
   postDeleted
 } : ProfileProps ) => {
@@ -84,7 +78,7 @@ const Profile = ({
           .sort((a, b) => a.toolName.toLowerCase() > b.toolName.toLowerCase() ? 1 : -1)
           .map((post) => (
             <ToolCard
-              key={post._id}
+              key={post._id.toString()}
               post={post}
               setIsModalOpen={setIsModalOpen}
               postDeleted={postDeleted}

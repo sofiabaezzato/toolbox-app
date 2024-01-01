@@ -3,12 +3,19 @@
 import Profile from "@components/Profile"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
+import { Post } from "@utils/types"
 
-const UserProfile = ({ params }) => {
+type UserProfileProps = {
+  params?: {
+    id: string
+  }
+}
+
+const UserProfile = ({ params } : UserProfileProps) => {
   const searchParams = useSearchParams()
   const userName = searchParams.get("name")
   
-  const [userPosts, setUserPosts] = useState([])
+  const [userPosts, setUserPosts] = useState<Post[]>([])
   const [userDetails, setUserDetails] = useState({
     username: '',
     city: '',
@@ -35,7 +42,7 @@ const UserProfile = ({ params }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${params?.id}/posts`)
-      const data = await response.json()
+      const data : Post[] = await response.json()
 
       setUserPosts(data)
     }
