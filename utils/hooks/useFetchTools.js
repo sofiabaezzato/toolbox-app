@@ -44,7 +44,7 @@ const useFetchTools = (url, options) => {
       controller.abort()
     }
     
-    } , [url])
+  } , [url])
 
   return { data, isLoading, error }
 }

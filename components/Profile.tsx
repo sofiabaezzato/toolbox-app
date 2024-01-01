@@ -3,6 +3,7 @@ import React from 'react'
 import InfoCard from './InfoCard'
 import Loading from './Loading'
 import { Session } from 'next-auth'
+import { Post } from '@utils/types'
 
 type ProfileProps = {
   name: string
@@ -21,7 +22,7 @@ type ProfileProps = {
     bio: string;
   }
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-  postDeleted: React.MutableRefObject<any>
+  postDeleted: React.MutableRefObject<Post>
 }
 
 const Profile = ({

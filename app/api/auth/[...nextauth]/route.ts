@@ -1,9 +1,8 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google'
-
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
-import { ObjectId, Types } from "mongoose";
+import { Types } from "mongoose";
 
 declare module "next-auth" {
   interface Session {

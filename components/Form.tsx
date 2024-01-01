@@ -1,21 +1,36 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { Post } from "@utils/types";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+type FormProps = {
+  type: 'Edit' | "Add"
+  post: Post
+  setPost: React.Dispatch<React.SetStateAction<Post>>
+  submitting: boolean
+  handleSubmit: (e: any) => Promise<void>
+}
 
-  const removeTag = (indexToRemove) => {
+const Form = ({
+  type,
+  post,
+  setPost,
+  submitting,
+  handleSubmit
+  } : FormProps ) => {
+
+  const removeTag = (indexToRemove : number) => {
     const updatedPost = { ...post }
     updatedPost.tag.splice(indexToRemove, 1)
     setPost(updatedPost);
   };
 
-  const addTags = (e) => {
-    let newTag = e.target.value.trim().toLowerCase().replace(/,/g, "");
+  const addTags = (e : React.ChangeEvent<HTMLInputElement>) => {
+    let newTag : string = e.currentTarget.value.trim().toLowerCase().replace(/,/g, "");
     if (newTag) {
       setPost((prevPost) => ({ ...prevPost, tag: [...prevPost.tag, newTag] }))
     }
-    e.target.value = "";
+    e.currentTarget.value = "";
   }
 
   const currentUrl = usePathname()
@@ -42,7 +57,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             type="text"
             value={post.toolName}
             onChange={(e) => setPost({...post, toolName: e.target.value})}
-            placeholder="Write your tool name here..." required
+            placeholder="Write your tool name here..."
+            required
             className="form_input"
             id="toolname-input"
           />
@@ -56,7 +72,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <textarea
             value={post.description}
             onChange={(e) => setPost({...post, description: e.target.value})}
-            placeholder="Add a brief description of the tool" required
+            placeholder="Add a brief description of the tool"
+            required
             className="form_textarea"
             id="tool-description-input"
           />
@@ -90,8 +107,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             </ul>
             <input
               type="text"
-              onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)}
-              
+              /* onKeyUp={(e) => (e.key === " " || e.key ==="," ? addTags(e) : null)} */
+              onChange={(e) => e.target.value.slice(-1) === " " || e.target.value.slice(-1) === "," ? addTags(e) : null}
               placeholder="team-work, no-code, AI, productivity..."
               className="form_input"
               id="tag-input"
@@ -110,7 +127,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             type="url"
             value={post.url}
             onChange={(e) => setPost({...post, url: e.target.value})}
-            placeholder="https://www.toolbox.io (Required)" required
+            placeholder="https://www.toolbox.io (Required)"
+            required
             className="form_input"
             id="url-input"
           />

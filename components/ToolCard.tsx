@@ -1,37 +1,17 @@
 "use client"
 
-import { ObjectId } from "mongodb"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-
-type Creator = {
-  _id: ObjectId
-  email: string
-  username: string
-  image: string
-  city: string
-  website: string
-  bio: string
-}
+import { Post } from "@utils/types"
 
 type ToolCardProps = {
-  post: {
-    _id: ObjectId
-    creator: Creator
-    toolName: string
-    description: string
-    tag: string[]
-    url: string
-    price: string
-    likeCount: number
-    likes: ObjectId[]
-  }
+  post: Post
   handleTagClick?: (tagName: any) => void
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-  postDeleted: React.MutableRefObject<any>
+  setIsModalOpen?: React.Dispatch<React.SetStateAction<boolean>>
+  postDeleted?: React.MutableRefObject<ToolCardProps["post"]>
 }
 
 const ToolCard = ({

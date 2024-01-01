@@ -2,11 +2,17 @@
 
 import React, { useEffect } from 'react'
 
-const ConfirmationModal = ({ isModalOpen, handleModalClose, handleDelete}) => {
+type ConfirmationModalProps = {
+  isModalOpen: boolean
+  handleModalClose: React.Dispatch<React.SetStateAction<boolean>>
+  handleDelete: () => Promise<void>
+}
+
+const ConfirmationModal = ({ isModalOpen, handleModalClose, handleDelete} : ConfirmationModalProps) => {
   // close modal on esc key press
   useEffect(() => {
     const closeOnEscapeKey = (e) => {
-      e.key === 'Escape' ? handleModalClose() : null;
+      e.key === 'Escape' ? handleModalClose(false) : null;
     }
     
     document.body.addEventListener('keydown', closeOnEscapeKey)
@@ -37,7 +43,7 @@ const ConfirmationModal = ({ isModalOpen, handleModalClose, handleDelete}) => {
         <div className="flex gap-5 text-gray-600 mt-4 justify-between hover:text-gray-400">
           <button 
             className='red_active_btn hover:border-red-400 hover:text-red-400'
-            onClick={handleModalClose}
+            onClick={() => handleModalClose(false)}
             aria-label='Go back'
           >
             Back

@@ -6,15 +6,18 @@ import ToolCardList from './ToolCardList'
 import { useSearchParams, useRouter } from 'next/navigation'
 import useFetchTools from '@utils/hooks/useFetchTools'
 import Loading from './Loading'
+import { Post } from '@utils/types'
+
+type View = "list" | "grid"
 
 const Feed = () => {
   const [searchTimeout, setSearchTimeout] = useState(null)
-  const [searchResults, setSearchResults] = useState([])
-  const [view, setView] = useState('list')
+  const [searchResults, setSearchResults] = useState<Post[] | []>([])
+  const [view, setView] = useState<View>('list')
 
   const router = useRouter()
   const searchParams = useSearchParams()
-  const searchText = searchParams.get('search') || ''
+  const searchText : string = searchParams.get('search') || ''
 
   // fetch all tools
   const { data: posts, isLoading, error } = useFetchTools('/api/tool')
@@ -26,7 +29,7 @@ const Feed = () => {
 
   // save the search query in the URL, filter the tool list based on the query
   // and save the results in the state
-  const handleSearchChange = (searchText) => {
+  const handleSearchChange = (searchText : string) => {
     clearTimeout(searchTimeout)
 
     setSearchTimeout(
@@ -42,17 +45,17 @@ const Feed = () => {
     )
   }
 
-  const handleTagClick = (tagName) => {
+  const handleTagClick = (tagName : string) => {
     router.push(`?search=${tagName}`, {
       scroll: false,
       shallow: true
     })
 
-    const searchResult = filterTools(tagName)
+    const searchResult : Post[] = filterTools(tagName)
     setSearchResults(searchResult)
   }
 
-  const filterTools = (searchText) => {
+  const filterTools = (searchText : string) : Post[] | []  => {
     const regex = new RegExp(searchText, "i")
 
     return posts.filter((item) =>
@@ -63,22 +66,24 @@ const Feed = () => {
     )
   }
 
-  const handleClearInput = (e) => {
+  const handleClearInput = (
+    e : React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
     e.preventDefault()
     router.push(`/`, {
       scroll: false,
     })
   }
 
-  const viewPreference = (view) => {
+  const viewPreference = (view : View) => {
     localStorage.setItem("viewPreference", view)
     setView(view)
   }
 
   useEffect(() => {
-    const savedView = localStorage.getItem("viewPreference")
+    const savedView = localStorage.getItem("viewPreference") as View
     if (savedView) setView(savedView)
-  })
+  }, [])
 
   return (
     <section className='feed'>
@@ -111,7 +116,7 @@ const Feed = () => {
       <div className='mt-16 w-full'>
         <div className='flex gap-4 px-[1.5rem] sm:px-8 py-2 justify-center'>
           <button
-          className={view === 'list' ? 'text-red-600 font-semibold border-b-2 border-red-600' : 'text-gray-700 hover:text-gray-500'}
+            className={view === 'list' ? 'text-red-600 font-semibold border-b-2 border-red-600' : 'text-gray-700 hover:text-gray-500'}
             onClick={() => viewPreference('list')}
           >
             List

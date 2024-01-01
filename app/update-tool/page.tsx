@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-
 import Form from '@components/Form'
-import useFetchTools from '@utils/hooks/useFetchTools'
+import { Post } from '@utils/types'
 
 const EditTool = () => {
   const router = useRouter()
@@ -12,7 +11,7 @@ const EditTool = () => {
   const toolId = searchParams.get('id')
 
   const [submitting, setSubmitting] = useState(false)
-  const [post, setPost] = useState({
+  const [post, setPost] = useState<Post>({
     toolName: '',
     description: '',
     tag: [],

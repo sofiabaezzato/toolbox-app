@@ -5,12 +5,15 @@ import { useSession } from "next-auth/react"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import ConfirmationModal from "@components/ConfirmationModal"
+import { Post } from "@utils/types"
+
+type PostType = 'yourTools' | 'favorites'
 
 const MyProfile = () => {
   const router = useRouter()
   const { data: session } = useSession()
   
-  const [myPosts, setMyPosts] = useState([])
+  const [myPosts, setMyPosts] = useState<Post[] | []>([])
   const [userDetails, setUserDetails] = useState({
     username: '',
     image: '',
@@ -18,10 +21,10 @@ const MyProfile = () => {
     website: '',
     bio: '',
   })
-  const [postType, setPostType] = useState('yourTools')
+  const [postType, setPostType] = useState<PostType>('yourTools')
  
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const postDeleted = useRef(null)
+  const postDeleted = useRef<Post | null>(null)
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -61,13 +64,13 @@ const MyProfile = () => {
   }
 
   const handleDelete = async () => {
-    const post = postDeleted.current
+    const post : Post = postDeleted.current
     try {
       await fetch(`api/tool/${post._id.toString()}`, {
         method: 'DELETE'
       })
 
-      const filteredPosts = myPosts.filter((item) => item._id !== post._id)
+      const filteredPosts = myPosts.filter((item : Post) => item._id !== post._id)
 
       setMyPosts(filteredPosts)
     } catch (error) {
