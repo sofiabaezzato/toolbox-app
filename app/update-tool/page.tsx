@@ -21,7 +21,7 @@ const EditTool = () => {
 
   useEffect(() => {
     const getToolDetails = async () => {
-      const response = await fetch(`/api/tool/${toolId}`)
+      const response = await fetch(`/api/tools/${toolId}`)
       const data = await response.json()
 
       setPost({

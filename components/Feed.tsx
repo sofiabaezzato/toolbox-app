@@ -20,7 +20,7 @@ const Feed = () => {
   const searchText : string = searchParams.get('search') || ''
 
   // fetch all tools
-  const { data: posts, isLoading, error } = useFetchTools('/api/tool')
+  const { data: posts, isLoading, error } = useFetchTools('/api/tools')
 
   // re-render feed when a URL with a search query is pasted
   useEffect(() => {

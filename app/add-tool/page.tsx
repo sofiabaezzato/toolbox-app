@@ -28,7 +28,7 @@ const AddTool = () => {
     setSubmitting(true)
     if(session?.user.id) {
       try {
-        const response = await fetch("/api/tool/new", {
+        const response = await fetch("/api/tools/new", {
           method: "POST",
           body: JSON.stringify({
             toolName: post.toolName,

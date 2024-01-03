@@ -50,7 +50,7 @@ const ToolCard = ({
 
     // Update like count and add or remove user id in the tools' database
     try {
-      const response = await fetch(`/api/tool/like/${post._id}`, {
+      const response = await fetch(`/api/tools/like/${post._id}`, {
         method: "PUT",
         body: JSON.stringify({ userId: session?.user.id }),
       })
@@ -126,7 +126,7 @@ const ToolCard = ({
               width={30}
               height={30}
               className="rounded-full object-cover h-[30px]"
-              key={crypto.randomUUID()}
+                key={crypto.randomUUID()}
             />
             <p className="font-satoshi text-gray-900 text-xs">
               @{post.creator.username}

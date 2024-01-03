@@ -1,8 +1,8 @@
-import { Schema, model, models } from "mongoose";
+import { InferSchemaType, Schema, Types, model, models } from "mongoose";
 
 const ToolSchema = new Schema({
   creator: {
-    type: Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'User',
   },
   toolName: {
@@ -35,6 +35,8 @@ const ToolSchema = new Schema({
   }
 })
 
-const Tool = models.Tool || model('Tool', ToolSchema)
+type Tool = InferSchemaType<typeof ToolSchema>
+
+const Tool = models.Tool || model<Tool>('Tool', ToolSchema)
 
 export default Tool

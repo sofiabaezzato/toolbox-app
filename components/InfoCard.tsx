@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import { User } from '@utils/types'
 import { Session } from 'next-auth/core/types'
+import { User } from '@utils/types'
 
 type InfoCardProps = {
   userDetails: User

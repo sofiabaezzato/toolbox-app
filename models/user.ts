@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { InferSchemaType, Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
   email: {
@@ -28,6 +28,8 @@ const UserSchema = new Schema({
   }
 })
 
-const User = models.User || model("User", UserSchema)
+type User = InferSchemaType<typeof UserSchema>
+
+const User = models.User || model<User>("User", UserSchema)
 
 export default User

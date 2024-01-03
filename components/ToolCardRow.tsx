@@ -49,7 +49,7 @@ const ToolCardRow = ({
 
     // Update like count and add or remove user id in the tools' database
     try {
-      const response = await fetch(`/api/tool/like/${post._id}`, {
+      const response = await fetch(`/api/tools/like/${post._id}`, {
         method: "PUT",
         body: JSON.stringify({ userId: session?.user.id }),
       })

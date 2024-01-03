@@ -66,7 +66,7 @@ const MyProfile = () => {
   const handleDelete = async () => {
     const post : Post = postDeleted.current
     try {
-      await fetch(`api/tool/${post._id.toString()}`, {
+      await fetch(`api/tools/${post._id.toString()}`, {
         method: 'DELETE'
       })
 
