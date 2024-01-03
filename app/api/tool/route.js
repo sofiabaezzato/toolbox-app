@@ -5,7 +5,10 @@ export const GET = async (request) => {
   try {
     await connectToDB()
 
-    const tools = await Tool.find({}).populate('creator')
+    const tools = await Tool.find({}).populate({
+      path: 'creator',
+      select: '-email'
+    })
 
     return new Response(JSON.stringify(tools), { status: 200 })
   } catch (error) {
