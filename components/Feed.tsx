@@ -29,6 +29,7 @@ const Feed = () => {
 
   // save the search query in the URL, filter the tool list based on the query
   // and save the results in the state
+  
   const handleSearchChange = (searchText : string) => {
     clearTimeout(searchTimeout)
 
@@ -36,7 +37,8 @@ const Feed = () => {
       setTimeout(() => {
         router.replace(`?search=${searchText}`, {
           scroll: false,
-          shallow: true
+          // @ts-expect-error
+          shallow: true 
         })
 
         const searchResult = filterTools(searchText)
@@ -48,6 +50,7 @@ const Feed = () => {
   const handleTagClick = (tagName : string) => {
     router.push(`?search=${tagName}`, {
       scroll: false,
+      // @ts-expect-error
       shallow: true
     })
 

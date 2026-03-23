@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import { ReactNode } from 'react'
 
 type ProviderProps = {
-  children: ReactNode
+  children?: ReactNode
   session: Session
 }
 

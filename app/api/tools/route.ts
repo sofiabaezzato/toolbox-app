@@ -1,10 +1,11 @@
 import { connectToDB } from "@utils/database"
 import Tool from "@models/tool"
 import { Post } from "@utils/types"
+import { NextApiRequest } from "next"
 
 type Tools = Post[]
 
-export const GET = async (request : Request) => {
+export const GET = async (request : NextApiRequest) => {
   try {
     await connectToDB()
 
